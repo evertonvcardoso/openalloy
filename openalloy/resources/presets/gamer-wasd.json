@@ -1,0 +1,22 @@
+{
+  "name": "Gamer (WASD + arrows)",
+  "lighting": {
+    "effect": "static",
+    "params": {
+      "color": "#120008"
+    },
+    "keys": {
+      "19": "#ff1f3d",
+      "26": "#ff1f3d",
+      "27": "#ff1f3d",
+      "28": "#ff1f3d",
+      "85": "#00b7ff",
+      "90": "#00b7ff",
+      "91": "#00b7ff",
+      "92": "#00b7ff",
+      "33": "#ffaa00",
+      "41": "#ffaa00",
+      "45": "#ffaa00"
+    }
+  }
+}

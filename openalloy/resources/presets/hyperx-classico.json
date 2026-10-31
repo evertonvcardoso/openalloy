@@ -1,0 +1,10 @@
+{
+  "name": "HyperX classic",
+  "lighting": {
+    "effect": "static",
+    "params": {
+      "color": "#e31937"
+    },
+    "keys": {}
+  }
+}

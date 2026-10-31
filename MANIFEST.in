@@ -1,0 +1,10 @@
+# Source distribution = everything needed to install (install.sh), test and translate.
+include README.md INSTALL NEWS ChangeLog AUTHORS THANKS COPYING
+include install.sh uninstall.sh
+recursive-include man *.1
+recursive-include tools *.py *.sh
+recursive-include docs *.md *.png
+recursive-include tests *.py
+recursive-include openalloy/locales *.pot *.po *.mo
+include openalloy/resources/openalloy.desktop.in
+global-exclude __pycache__ *.py[cod] .pytest_cache .ruff_cache .mypy_cache

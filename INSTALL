@@ -1,0 +1,181 @@
+Installing OpenAlloy
+====================
+
+Copyright (C) 2026 Everton Vilhena Cardoso.  This file is free documentation;
+see the notice at the end.
+
+
+1. Requirements
+---------------
+
+  * Linux with systemd and udev (Debian, Ubuntu, SparkyLinux, Arch, CachyOS,
+    Fedora and openSUSE are handled by the installer).
+  * Python 3.10 or later.  The core (service and command line) uses only the
+    Python standard library.
+  * For the window: GTK 4.10 or later with PyGObject and pycairo
+    (Debian: python3-gi, python3-gi-cairo, gir1.2-gtk-4.0).
+  * pipx.
+  * Optional, for the sound effects: parec (pulseaudio-utils) or pw-record.
+    Both work with PipeWire.
+  * A HyperX Alloy Origins Core TKL, USB ID 0951:16e6 (HyperX/Kingston) or
+    03f0:098f (HP).  Without one, everything can be tried with --simulate.
+
+Close OpenRGB, or disable the "HyperX Alloy Origins Core" device in it, before
+using OpenAlloy: two programs writing to the same keyboard fight over it.
+
+
+2. Quick install
+----------------
+
+As your normal user (not root), in the unpacked source directory:
+
+    ./install.sh                  # English
+    ./install.sh --lang pt_BR     # Brazilian Portuguese
+
+Then unplug and replug the keyboard once and run:
+
+    openalloy doctor
+
+The installer asks for sudo only for the system packages, the udev rule and
+the sleep hook.  It:
+
+  1. installs the system packages (Python 3, pipx, PyGObject, GTK 4,
+     gi-cairo, pulseaudio-utils);
+  2. installs OpenAlloy with pipx, in an isolated environment that can see the
+     distribution's PyGObject;
+  3. installs /etc/udev/rules.d/60-openalloy.rules, which gives the logged-in
+     user (uaccess) access to the two lighting interfaces only: interface 2
+     (vendor channel) and interface 3 (HID LampArray).  The interfaces that
+     carry what you type stay closed;
+  4. installs, enables and restarts the systemd user service
+     ~/.config/systemd/user/openalloy.service, so an upgrade takes effect at
+     once;
+  5. adds "OpenAlloy" to the application menu;
+  6. installs the sleep hook /usr/lib/systemd/system-sleep/openalloy
+     (/etc/systemd/system-sleep/openalloy when /usr is read-only);
+  7. installs the manual pages openalloy(1) and openalloyd(1) in
+     ~/.local/share/man/man1.
+
+Installer options:
+
+    --lang CODE     installer and interface language (en, pt_BR)
+    --reactive      also install 61-openalloy-reactive.rules, which lets the
+                    logged-in user read this keyboard's key events (needed by
+                    the Reactive and Ripple effects and the reaction layer)
+    --no-deps       do not install system packages
+    --no-udev       do not install the udev rule and the sleep hook
+    --no-service    do not install or enable the user service
+    --no-desktop    do not add the menu entry
+    --dev           editable install (pipx install -e)
+
+
+3. Careful first install, step by step
+--------------------------------------
+
+This path is recommended the first time, and especially for the HP 03f0:098f.
+
+  a) Try it without touching the hardware:
+
+         python3 -m pytest -q                                 # if pytest is installed
+         python3 -m openalloy.presentation.cli.main --simulate status
+         python3 -m openalloy.presentation.cli.main --simulate-hp gui
+
+  b) Install without starting the service:
+
+         ./install.sh --no-service
+
+     Replug the keyboard, then run 'openalloy doctor'.  It sends nothing to the
+     keyboard; it lists the interfaces it found and their permissions.  On the
+     HP 03f0:098f with firmware 21.16, interface 3 must show as
+     "LampArray/Dynamic Lighting, rw".
+
+  c) Test live RGB:
+
+         openalloy test-rgb
+
+     (or Keyboard > Test RGB in the window).  The keyboard must show the F-key
+     row green, the left half red and the right half blue.
+
+       - Yes: the protocol works with your firmware.  On keyboards with onboard
+         memory, writing to it is unlocked for this unit and firmware version.
+       - No, or nothing changed: writing stays locked.  Do not try loose HID
+         commands; send the output of 'openalloy doctor' and
+         'openalloy status' instead.
+
+  d) Install the background service:
+
+         ./install.sh
+
+  e) Onboard memory (vendor channel only) is unlocked by step c.  To unlock it
+     without the test (not recommended before the live test has worked), start
+     the service with OPENALLOY_ENABLE_FLASH=I_ACCEPT_THE_RISK in its
+     environment.
+
+
+4. Upgrading
+------------
+
+Unpack the new version and run ./install.sh again; it restarts the service, so
+the new version runs at once.  'openalloy status' shows the version in use.
+Settings and presets in ~/.config/openalloy are kept.  To roll back, run the
+install.sh of the previous version.
+
+Upgrading from 1.5.3 or earlier: the udev rule of those versions never matched
+(see NEWS, 1.5.4).  If OpenAlloy worked anyway, another rule is granting access
+to the keyboard - possibly one from another tool that opens every interface,
+including the ones that carry your keystrokes.  This read-only check lists
+each hidraw node, its interface and who can open it:
+
+    for n in /dev/hidraw*; do
+      i=$(cat /sys/class/hidraw/$(basename $n)/device/../bInterfaceNumber 2>/dev/null)
+      echo "$n if=$i $(udevadm info -q property $n | grep -E '^(ID_VENDOR_ID|CURRENT_TAGS)=' | tr '\n' ' ') $(getfacl -p $n 2>/dev/null | grep '^user:' | tr '\n' ' ') $(stat -c %a $n)"
+    done
+    grep -lE '0951|03f0|hidraw' /etc/udev/rules.d/* /usr/lib/udev/rules.d/* 2>/dev/null
+
+If the keyboard's interfaces if=00 or if=01 are open to your user (an ACL
+"user:...:rw-" or mode 666), remove the old rule once OpenAlloy 1.5.4 or later
+is installed.
+
+
+5. Without the installer
+------------------------
+
+    pipx install --system-site-packages .
+    openalloy udev-rules | sudo tee /etc/udev/rules.d/60-openalloy.rules
+    sudo udevadm control --reload-rules && sudo udevadm trigger
+    install -Dm644 openalloy/resources/openalloy.service \
+        ~/.config/systemd/user/openalloy.service
+    systemctl --user daemon-reload && systemctl --user enable --now openalloy
+    install -Dm644 -t ~/.local/share/man/man1 man/openalloy.1 man/openalloyd.1
+
+uaccess applies to the active local session (not to SSH logins).
+
+
+6. Uninstalling
+---------------
+
+    ./uninstall.sh            # keeps settings and presets
+    ./uninstall.sh --purge    # also removes ~/.config/openalloy
+
+Profiles already written to the keyboard's memory stay in the keyboard.
+
+
+7. Known limits
+---------------
+
+  * On the HP 03f0:098f with firmware 21.16 only HID LampArray works: live
+    colors, effects, painting, sound and key reaction, fixed color.  Onboard
+    profiles, onboard writes and hardware brightness do not exist in that
+    standard (brightness is done in software).
+  * Key macros and hardware key remapping are not supported (the protocol is
+    unknown); use keyd or input-remapper.  Game Mode keeps working on the
+    keyboard itself (Fn + F12).
+  * There is no firmware updater.
+  * Do not use it together with OpenRGB, hxoctkl or another program that
+    writes to the same HID interface.
+
+-----
+
+Copying and distribution of this file, with or without modification, are
+permitted in any medium without royalty provided the copyright notice and this
+notice are preserved.  This file is offered as-is, without any warranty.

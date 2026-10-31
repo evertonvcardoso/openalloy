@@ -1,0 +1,121 @@
+#!/usr/bin/env python3
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2026 Everton Vilhena Cardoso
+# OpenAlloy systemd-sleep hook  (/usr/lib/systemd/system-sleep/openalloy)
+#
+# Called by systemd as:  openalloy pre|post  suspend|hibernate|hybrid-sleep|...
+# systemd waits for this script, so it runs before processes are frozen.
+#
+# pre : ask every user's OpenAlloy daemon to stop streaming and close the
+#       keyboard, then reset the keyboard's USB device so the firmware
+#       restarts on its onboard profile. A keyboard left in direct mode with
+#       no frames may stop signalling remote wake-up (seen by hyperx-studio on
+#       the full-size Alloy Origins) - this avoids a PC that will not wake.
+# post: ask the daemons to take the keyboard back.
+#
+# systemd 256+ freezes user.slice while these hooks run ("they should not attempt to
+# communicate with any user services expecting a reply", systemd-sleep(8)). Then the
+# daemons are not asked at all - that would only delay sleep and resume and deliver
+# both notices late - and the USB reset alone does the job; each daemon notices the
+# resume by its clocks and takes the keyboard back. Notices carry the send time, so a
+# daemon can ignore one that arrives after the resume.
+#
+# Standard library only. Never fails the sleep: every error is swallowed.
+import fcntl
+import glob
+import json
+import os
+import socket
+import sys
+import time
+
+IDS = {("0951", "16e6"), ("03f0", "098f")}
+USBDEVFS_RESET = 0x5514
+CGROUP = "/sys/fs/cgroup/user.slice"
+REPLY_TIMEOUT = 1.5          # an awake daemon answers in milliseconds
+
+
+def users_frozen(cgroup=None):
+    """True while systemd keeps the user services frozen (cgroup v2 freezer)."""
+    base = cgroup or CGROUP
+    if read(base + "/cgroup.freeze") == "1":
+        return True
+    return "frozen 1" in read(base + "/cgroup.events").splitlines()
+
+
+def boottime():
+    clock = getattr(time, "CLOCK_BOOTTIME", None)
+    return time.clock_gettime(clock) if clock is not None else time.monotonic()
+
+
+def notify(method):
+    if users_frozen():
+        return                           # nobody can answer now (see the top)
+    for sock_path in glob.glob("/run/user/*/openalloy.sock"):
+        # a daemon older than 1.5.3 rejects the parameter: ask again without it
+        for params in ({"sent_at": boottime()}, None):
+            if not ask(sock_path, method, params):
+                break
+
+
+def ask(sock_path, method, params):
+    """Send one request; True only if the daemon answered with an error."""
+    request = {"id": 1, "method": method}
+    if params:
+        request["params"] = params
+    try:
+        s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        s.settimeout(REPLY_TIMEOUT)
+        try:
+            s.connect(sock_path)
+            s.sendall((json.dumps(request) + "\n").encode())
+            reply = s.makefile().readline()      # wait until the daemon has released it
+        finally:
+            s.close()
+        return bool(params) and "error" in json.loads(reply or "{}")
+    except (OSError, ValueError):
+        return False
+
+
+def read(path):
+    try:
+        with open(path) as fh:
+            return fh.read().strip()
+    except OSError:
+        return ""
+
+
+def reset_keyboards():
+    for dev in glob.glob("/sys/bus/usb/devices/*"):
+        if (read(dev + "/idVendor"), read(dev + "/idProduct")) not in IDS:
+            continue
+        bus, num = read(dev + "/busnum"), read(dev + "/devnum")
+        if not (bus.isdigit() and num.isdigit()):
+            continue
+        node = "/dev/bus/usb/%03d/%03d" % (int(bus), int(num))
+        try:
+            fd = os.open(node, os.O_WRONLY)
+            try:
+                fcntl.ioctl(fd, USBDEVFS_RESET, 0)
+            finally:
+                os.close(fd)
+        except OSError:
+            pass
+
+
+def main():
+    phase = sys.argv[1] if len(sys.argv) > 1 else ""
+    if phase == "pre":
+        notify("suspend")
+        reset_keyboards()
+        time.sleep(0.3)
+    elif phase == "post":
+        notify("wake")
+    return 0
+
+
+if __name__ == "__main__":
+    try:
+        sys.exit(main())
+    except Exception:
+        sys.exit(0)

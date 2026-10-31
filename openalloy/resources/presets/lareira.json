@@ -1,0 +1,13 @@
+{
+  "name": "Fireplace",
+  "lighting": {
+    "effect": "flicker",
+    "params": {
+      "color": "#ff5a00",
+      "min": 30,
+      "max": 100,
+      "speed": 40
+    },
+    "keys": {}
+  }
+}

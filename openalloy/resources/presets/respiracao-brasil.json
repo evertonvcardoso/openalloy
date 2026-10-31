@@ -1,0 +1,15 @@
+{
+  "name": "Green-and-yellow breathing",
+  "lighting": {
+    "effect": "breathing",
+    "params": {
+      "colors": [
+        "#00c040",
+        "#ffd400"
+      ],
+      "speed": 25,
+      "min": 5
+    },
+    "keys": {}
+  }
+}

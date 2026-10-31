@@ -1,0 +1,15 @@
+{
+  "name": "Typewriter",
+  "lighting": {
+    "effect": "static",
+    "params": {
+      "color": "#08080c"
+    },
+    "reaction": {
+      "type": "flash",
+      "color": "#ffaa00",
+      "fade": 1.2
+    },
+    "keys": {}
+  }
+}

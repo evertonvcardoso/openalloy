@@ -1,0 +1,10 @@
+{
+  "name": "Reactive ripple",
+  "lighting": {
+    "effect": "ripple",
+    "params": {
+      "rainbow": true
+    },
+    "keys": {}
+  }
+}

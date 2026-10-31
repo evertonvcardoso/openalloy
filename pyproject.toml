@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=77.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openalloy"
+version = "1.6.0"
+description = "Native Linux configurator for the HyperX Alloy Origins Core keyboard: per-key RGB, effects, onboard profiles (an NGENUITY alternative)"
+readme = "README.md"
+license = "GPL-2.0-or-later"
+license-files = ["COPYING", "THANKS"]
+requires-python = ">=3.10"
+authors = [{ name = "Everton Vilhena Cardoso" }]
+maintainers = [{ name = "Everton Vilhena Cardoso" }]
+keywords = ["hyperx", "alloy", "origins", "core", "rgb", "keyboard", "ngenuity", "linux",
+            "lamparray", "hidraw", "gtk4"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Environment :: X11 Applications :: GTK",
+    "Intended Audience :: End Users/Desktop",
+    "Natural Language :: English",
+    "Natural Language :: Portuguese (Brazilian)",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: System :: Hardware",
+    "Topic :: System :: Hardware :: Hardware Drivers",
+]
+# The core (daemon + CLI) uses only the Python standard library.
+dependencies = []
+
+[project.optional-dependencies]
+gui = ["PyGObject>=3.42", "pycairo>=1.20"]   # pycairo draws the keyboard (python3-gi-cairo)
+dev = ["pytest", "ruff"]
+
+[project.scripts]
+openalloy = "openalloy.presentation.cli.main:main"
+openalloyd = "openalloy.presentation.daemon.main:main"
+
+[tool.setuptools.packages.find]
+include = ["openalloy*"]
+
+[tool.setuptools.package-data]
+openalloy = ["resources/*", "resources/presets/*.json", "locales/*.pot",
+             "locales/*/LC_MESSAGES/*.po", "locales/*/LC_MESSAGES/*.mo"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501", "B008", "B017", "B027", "B905", "UP006", "UP007", "UP031", "UP035", "UP045"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

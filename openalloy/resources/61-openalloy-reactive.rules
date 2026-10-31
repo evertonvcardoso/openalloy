@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2026 Everton Vilhena Cardoso
+# OpenAlloy - OPTIONAL: lets reactive effects (Reactive / Ripple) see key
+# presses from the Alloy Origins Core's own input nodes, for the user on the
+# active local seat. Only installed with `install.sh --reactive`.
+# Without it, add yourself to the "input" group or skip reactive effects.
+SUBSYSTEM=="input", KERNEL=="event*", ATTRS{idVendor}=="0951", ATTRS{idProduct}=="16e6", TAG+="uaccess"
+SUBSYSTEM=="input", KERNEL=="event*", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="098f", TAG+="uaccess"

@@ -1,0 +1,358 @@
+OpenAlloy NEWS -- history of user-visible changes.
+
+Copyright (C) 2026 Everton Vilhena Cardoso
+See the end of this file for copying conditions.
+
+Please report problems with the output of 'openalloy doctor' and
+'journalctl --user -u openalloy'.
+
+
+* Noteworthy changes in release 1.6.0 (2026-10-31) [stable]
+
+** Documentation and packaging
+
+  All documentation is now in English. The package follows the GNU layout:
+  README.md, INSTALL, NEWS, ChangeLog, AUTHORS, THANKS and COPYING (the GNU
+  General Public License, version 2). NOTICE became THANKS, CHANGELOG.md became
+  NEWS, and the SparkyLinux first-steps guide became INSTALL.
+
+  docs/ went from nine reports to three guides: PROTOCOL.md, DEVELOPMENT.md
+  (architecture, design decisions, translations) and TESTING.md (test suite,
+  test lab, results and the defects found in each audit).
+
+  Copyright and authorship: Everton Vilhena Cardoso. Every source file carries
+  an SPDX license identifier and a copyright line.
+
+** New features
+
+  Manual pages openalloy(1) and openalloyd(1). install.sh installs them for
+  the user (~/.local/share/man/man1) and uninstall.sh removes them. The user
+  service points to them (Documentation=man:openalloyd(1)).
+
+** Bug fixes
+
+  An effect parameter that is not a number ('apply wave -p speed=abc', 'nan',
+  'inf') showed Python's untranslated text ("could not convert string to
+  float", "cannot convert float NaN to integer"); it now says "speed: a number
+  is expected", in the interface language. Found by the test lab.
+
+** Changes
+
+  tools/diagnostico_hid.py was renamed tools/hid_diagnostics.py.
+
+  No other change in the protocols, the drivers, the commands, the settings,
+  the presets or the service. Settings, presets and preset identifiers of earlier
+  versions keep working unchanged.
+
+
+* Noteworthy changes in release 1.5.4 (2026-10-31) [stable]
+
+  Defects found by the new test lab (lab/): the program installed by its own
+  install.sh in Debian testing (Python 3.14, systemd 262, kernel 7.x) under
+  QEMU, with the keyboards emulated as real USB devices (USB/IP) - real kernel,
+  udev, logind and suspend.
+
+** Bug fixes
+
+  The udev rule 60-openalloy.rules never matched. It combined ATTRS{idVendor}
+  (of the USB device) with ATTRS{bInterfaceNumber} (of the USB interface), and
+  udev requires all ATTRS of one rule to match the same parent. On a clean
+  system the user had no access ("no permission to open /dev/hidrawN"). The
+  rule now uses udev's own usb_id builtin and matches on the hidraw node; it
+  still grants access to interfaces 2 and 3 only - the keystroke interfaces 0
+  and 1 stay closed. Tests reject the pattern that can never match.
+
+  'openalloy release' and 'hold --release' after a 'hold' did not hand the
+  lighting back to the firmware: in fixed mode the service lets go of the
+  device, so the release had nowhere to send AutonomousMode. It now reopens
+  the keyboard to do so.
+
+  In "keyboard's own lighting" mode the service did not notice the cable being
+  unplugged and plugged back (nothing is sent in that mode) and the status kept
+  saying "connected". The device identity is now checked every second, as in
+  fixed mode.
+
+  On a slow or busy machine, replies from the service could never reach the
+  window (a language change saved by the service but not applied, a frozen
+  status): they were delivered at idle priority, and the animated preview never
+  lets the GTK loop go idle. They now use the default priority.
+
+  A lighting event that arrived before the initial data raised an IndexError in
+  the terminal.
+
+  'preset delete' of a preset that does not exist exited with status 0; it is
+  now an error (status 1).
+
+  A keyboard that refuses the vendor channel and has no LampArray logged the
+  same line every 2 seconds, saying "using HID LampArray". It is now logged
+  once, with the right wording.
+
+** Test lab (lab/, not part of the installed package)
+
+  A USB/HID emulator independent of the program's code (descriptors, vendor
+  channel, LampArray per the HID standard, boot keyboard), a USB/IP server,
+  injectable faults, a hex log, an SVG image of what the keyboard shows; a
+  Debian forky VM with a disposable snapshot per run; scenarios for install,
+  permissions, effects, faults, reconnection, real S3 suspend, the graphical
+  interface, performance and uninstall; comparison between versions; a
+  read-only tool to capture the descriptors of the real keyboard.
+
+
+* Noteworthy changes in release 1.5.3 (2026-10-30) [stable]
+
+  Fixes from the journal of the real HP keyboard (03f0:098f, firmware 21.16,
+  SparkyLinux) and from the review of 1.5.2. No change in the LampArray
+  protocol, 'hold', driver selection, settings, presets or commands.
+
+** Suspend (systemd 256 and later)
+
+  systemd freezes user services while sleep hooks run; the hook asked the
+  frozen service to let go of the keyboard and waited for the reply. Effect:
+  about 3 s more to suspend and 3 s more to resume, and both notices reached
+  the service only after the resume ("going to sleep" and "resumed" in the same
+  second). If they arrived in the reverse order, the service stayed "asleep"
+  with the keyboard released until the next suspend.
+
+  The hook no longer talks to frozen services (it only resets the USB device,
+  as before); when it does talk, it waits at most 1.5 s and sends the time of
+  the notice. The service ignores a sleep notice that arrives after the resume
+  and notices the resume by itself from its clocks (CLOCK_BOOTTIME versus
+  CLOCK_MONOTONIC), restoring the color or the effect. This also works with the
+  old hook and with systemd versions that do not freeze.
+
+** Stopping the service
+
+  The SIGTERM handler called Event.set() and could deadlock against the main
+  thread's Event.wait(); after a freeze the signal could also go to another
+  thread and the main thread never woke up. Either way 'systemctl --user
+  stop/restart' hung until systemd sent SIGKILL. Handlers no longer take locks,
+  the main thread wakes every 0.5 s, SIGHUP reloads in a thread, and the
+  handlers are installed before the socket exists.
+
+  Stopping the service just as a connection arrived could end with "cannot join
+  thread before it is started" and exit status 1; fixed, and a connection
+  accepted during shutdown is closed.
+
+** One language in the journal
+
+  Core errors were translated when raised, so translated text appeared inside
+  English log lines ("... refused ([Errno 71] falha de escrita em ...)"). They
+  are now translated only when shown (window and CLI in the chosen language; an
+  error already on screen follows a language change) and the journal is all
+  English. The error number no longer appears twice.
+
+** Internal RPC
+
+  Each client's output queue was limited to 256 messages, so a burst dropped
+  even a window that was reading normally. The limit is now 4 MiB of pending
+  data; a reader gets everything, in order; a client that stopped reading is
+  still disconnected.
+
+** Command line
+
+  'openalloy status | head -1' ended with "Error: Broken pipe"; it now exits
+  quietly. An invalid number in a setting ('fps=abc', 'nan', 'inf') showed
+  Python's untranslated text; it now says "a number is expected".
+
+** Tests
+
+  27 new tests (329 in total). Fixed sleeps before checks were replaced by
+  waits with a deadline.
+
+
+* Noteworthy changes in release 1.5.2 (2026-10-30) [stable]
+
+  Maintenance from the external review of 1.5.1. No change in the USB
+  protocol, RPC API, commands or data formats.
+
+** Internal RPC
+
+  An idle connection (silent, or with half a line) held a slot forever; it is
+  now closed after 30 s. Replies and events could interleave on the same socket
+  (a broken JSON line); each client now has a single output queue. Event
+  subscriptions now end within about 0.5 s and reconnect when the service
+  restarts. Stopping the service now shuts clients and the accept thread down;
+  the listen backlog went from 16 to 64.
+
+** Robustness
+
+  A corrupted, deeply nested config.json crashed the service and every CLI
+  command (RecursionError); configuration and preset files now have a size
+  limit and are ignored with a warning when invalid. A corrupted
+  'flash_validated' record crashed status(); it is now dropped. Deleting the
+  same preset concurrently is now safe. Late replies from before a switch
+  between service and window, or from a closed window, are discarded. A
+  duplicated LampArray reply left one LED unidentified; the missing LED is now
+  asked again. The CLI log no longer sticks to the stderr of the moment it was
+  configured.
+
+** Tests and tools
+
+  25 new tests (302 in total). A per-test watchdog interrupts a hung test after
+  120 s and writes all thread stacks to /tmp/openalloy-test-hang.log. A test
+  that leaves OpenAlloy threads running fails. tools/test_install.sh OLD.zip
+  NEW.zip installs, upgrades and rolls back with the real install.sh in a
+  temporary HOME.
+
+
+* Noteworthy changes in release 1.5.1 (2026-10-30) [stable]
+
+  Audit of 1.5.0. Fixes and one internal optimization only.
+
+** Bug fixes
+
+  (high) A read error on the vendor channel (e.g. unplugged cable) became an
+  UnboundLocalError/TypeError instead of a transport error: a local variable
+  named '_' hid the translation function (a 1.5.0 regression). This could
+  prevent the LampArray fallback and print a traceback in the CLI.
+
+  (medium) The key reader of the reactive effects always ended with an
+  exception when stopped (same cause) and kept its state "active".
+
+  (medium) A translation with a wrong placeholder broke the message; the
+  catalog compiler now leaves such a translation out and English is used.
+
+  (low) '--lang' without a value showed the help of an internal parser; an
+  unknown code was silently ignored and now warns. A runtime check of the
+  audio module used 'assert' (removed by 'python -O').
+
+** Optimization
+
+  LampArray keyboards received 48 USB reports per second for an unchanged
+  static color; refreshing identical frames is now per driver (LampArray 2 s,
+  vendor channel 0.25 s as before): about 4 reports per second.
+
+  10 new tests (277 in total); 9 of them fail on 1.5.0.
+
+
+* Noteworthy changes in release 1.5.0 (2026-10-30) [stable]
+
+** Internationalization with GNU gettext
+
+  Languages: English (default and fallback) and Brazilian Portuguese. Every
+  user-facing text - window, command line (including help and argparse
+  errors), service, error messages, effects, built-in presets, installer,
+  uninstaller, menu entry and the diagnostics tool - is written in English in
+  the code and translated through openalloy/locales/<lang>/LC_MESSAGES/
+  openalloy.po (595 messages, 100% in both).
+
+  Choose the language in Keyboard > Settings > Language (switches at once),
+  with 'openalloy language pt_BR', 'openalloy --lang pt_BR ...',
+  './install.sh --lang pt_BR' or OPENALLOY_LANG. The choice is saved and the
+  service follows the window. The system language does not change the default.
+
+  Plurals, message contexts, and numbers, percentages and dates in the format
+  of each language. tools/i18n.py (pure Python): extract, update, compile,
+  check, stats, all.
+
+** US layout
+
+  US (ANSI) is tested alongside ABNT2 (LED map, detection through LampArray
+  and through the vendor channel); '--sim-layout ansi|abnt2|iso' simulates
+  each. Built-in preset names are now English in the files (translated when
+  shown); their identifiers ('matrix', 'por-do-sol', ...) do not change.
+
+  47 new tests (267 in total).
+
+
+* Noteworthy changes in release 1.4.2 (2026-10-30) [stable]
+
+  Merges the best of the parallel "1.4.1 HP-Driver" branch. RPC: 256 KiB per
+  request, 24 clients and 48 concurrent calls; non-UTF-8 bytes give an error
+  and the connection survives. LampArray: LED ids and RGBI values are validated
+  before each report. Window: one status query at a time, nothing processed
+  after closing, invalid preset index handled. A LampArray reply with a
+  different but valid LED id is still accepted (rejecting it could stop a
+  working keyboard from being recognized). 214 tests.
+
+
+* Noteworthy changes in release 1.4.1 (2026-10-30) [stable]
+
+  Audit and clean-up, no change in behavior. Dead code removed; 'doctor' and
+  'brightness +/-' use the protocol constants; eight outdated screenshots
+  replaced by two current ones (69% smaller project); the 'gui' extra declares
+  pycairo.
+
+
+* Noteworthy changes in release 1.4.0 (2026-10-30) [stable]
+
+  Full code review, 50 new tests (200 in total). Fixed: an upgrade did not
+  restart the running service; a fixed color did not come back when the
+  keyboard was replugged on the same /dev/hidrawN; test-rgb from fixed mode
+  handed the LEDs to the firmware; a layout change needed a replug; LampArray
+  software brightness was lost on reboot; the LED color correction froze the
+  preview; a hung window could freeze the lighting; stopping or starting the
+  service from the window left it talking to nothing; invalid settings could
+  loop the engine (now validated on save and repaired on load); invalid presets
+  broke the list; the LampArray driver was not tried without permission on
+  interface 2; audio capture did not recover from a PipeWire restart;
+  malformed RPC requests dropped the connection; several CLI errors.
+
+
+* Noteworthy changes in release 1.3.1 (2026-10-30) [stable]
+
+  Red looked pink: screen colors (sRGB) were sent raw to LEDs, which are
+  linear. Colors now go through gamma correction (2.2) before reaching the
+  keyboard (live, fixed, hold and onboard). Setting 'led_gamma' (1.0 turns it
+  off).
+
+
+* Noteworthy changes in release 1.3.0 (2026-10-30) [stable]
+
+  Simplified interface: three tabs (Lighting, Keyboard, Logs), three main
+  buttons (Apply, Fix on keyboard, LEDs off). The window follows the system
+  theme. Fixed mode in the service: the frame is applied once and the device is
+  released without handing the LEDs to the firmware; it is restored after a
+  replug, a resume or a brightness change.
+
+
+* Noteworthy changes in release 1.2.1 (2026-10-30) [stable]
+
+  New 'openalloy hold COLOR [-k KEY=COLOR] [--preset NAME] [-b LEVEL]' sets a
+  color and exits without handing the LEDs back (HID LampArray);
+  'hold --release' hands them back.
+
+
+* Noteworthy changes in release 1.2.0 (2026-10-30) [stable]
+
+  Support for the HP 03f0:098f with firmware 21.16 through HID LampArray (page
+  0x59, the standard behind Windows 11 Dynamic Lighting). That firmware refuses
+  the vendor channel on interface 2 (EPROTO already on query 0x10). The new
+  hid_lamparray driver reads the LED list and each LED's key from the device,
+  so the key map and the layout come from the keyboard itself. The driver is
+  chosen automatically. Brightness is done in software there; onboard profiles
+  are not available. The udev rule also opens interface 3 (lighting reports
+  only). '--simulate-hp' simulates this keyboard. 138 tests.
+
+
+* Noteworthy changes in release 1.1.1 (2026-10-30) [stable]
+
+  Onboard writes are locked until a live RGB test is confirmed on that unit
+  (USB id, serial number and firmware); OPENALLOY_ENABLE_FLASH=I_ACCEPT_THE_RISK
+  remains as an alternative. HID replies with an unexpected opcode are
+  discarded; truncated replies cancel a read or write; a short USB write is an
+  error. 120 tests.
+
+
+* Noteworthy changes in release 1.1.0 (2026-10-30) [stable]
+
+  System suspend hook. Sound effects (equalizer, sound spectrum, sound pulse,
+  music wave). A key-press reaction layer on top of any effect. Fire and snake
+  effects. Identical frames are not re-sent more often than every 0.25 s. Nine
+  new presets (19 in total). 111 tests.
+
+
+* Noteworthy changes in release 1.0.0 (2026-10-30) [stable]
+
+  First release: Linuity and PlasmaNGenuity combined with the Alloy Origins
+  Core protocol (OpenRGB, hxoctkl). Live per-key RGB, writing to the three
+  onboard profiles, GTK 4 interface, command line, systemd user service.
+
+
+-----
+
+Copyright (C) 2026 Everton Vilhena Cardoso
+
+Copying and distribution of this file, with or without modification, are
+permitted in any medium without royalty provided the copyright notice and this
+notice are preserved. This file is offered as-is, without any warranty.

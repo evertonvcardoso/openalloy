@@ -1,0 +1,12 @@
+{
+  "name": "Pastel rainbow",
+  "lighting": {
+    "effect": "wave",
+    "params": {
+      "speed": 15,
+      "saturation": 35,
+      "scale": 100
+    },
+    "keys": {}
+  }
+}

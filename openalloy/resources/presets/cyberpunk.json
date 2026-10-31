@@ -1,0 +1,20 @@
+{
+  "name": "Cyberpunk (wave + reaction)",
+  "lighting": {
+    "effect": "colorwave",
+    "params": {
+      "colors": [
+        "#ff00c8",
+        "#00e6ff"
+      ],
+      "speed": 25,
+      "direction": "right",
+      "scale": 40
+    },
+    "reaction": {
+      "type": "ripple",
+      "color": "#ffffff"
+    },
+    "keys": {}
+  }
+}

@@ -1,0 +1,95 @@
+2026-10-31  Everton Vilhena Cardoso
+
+	Release 1.6.0: English documentation, GNU project files, manual pages.
+
+	* AUTHORS, THANKS, NEWS, ChangeLog, INSTALL: New files.
+	* COPYING: Renamed from LICENSE (GNU GPL version 2, unchanged text).
+	* NOTICE: Removed; third-party credits, licenses and the trademark
+	notice moved to THANKS, with the MIT permission notice.
+	* CHANGELOG.md: Removed; translated into NEWS.
+	* PRIMEIROS_PASSOS_SPARKYLINUX.md: Removed; translated into INSTALL.
+	* README.md: Rewritten in English.
+	* docs/PROTOCOL.md: Translated from docs/PROTOCOLO.md.
+	* docs/DEVELOPMENT.md: New; architecture and design decisions (from
+	docs/ANALISE.md) and translation maintenance (from docs/I18N.md).
+	* docs/TESTING.md: New; test suite, test lab and results (from
+	docs/LABORATORIO.md) and the defects found by each audit (from
+	docs/AUDITORIA.md and docs/AUDITORIA_1.5.1.md to 1.5.4.md).
+	* docs/ANALISE.md, docs/AUDITORIA*.md, docs/I18N.md,
+	docs/LABORATORIO.md, docs/PROTOCOLO.md: Removed.
+	* docs/screenshots/fixar-pt-br-abnt2.png: Renamed to
+	hold-pt-br-abnt2.png.
+	* man/openalloy.1, man/openalloyd.1: New manual pages.
+	* install.sh: Install the manual pages in
+	${XDG_DATA_HOME:-~/.local/share}/man/man1.
+	* uninstall.sh: Remove them.
+	* install.sh, uninstall.sh: Print translated lines without
+	"echo $(...)" (shellcheck SC2005).
+	* lab/vm/build-image.sh, lab/vm/guest/lab-attach.sh: Document the two
+	intended shellcheck exceptions.
+	* lab/README.md: Describe the current udev rule.
+	* openalloy/domain/colors.py, openalloy/presentation/gui/app.py,
+	openalloy/resources/61-openalloy-reactive.rules: English comments.
+	* openalloy/resources/openalloy.service (Documentation): New key.
+	* tools/diagnostico_hid.py: Renamed to tools/hid_diagnostics.py.
+	* tools/i18n.py (PY_SOURCES): Follow the rename.
+	* openalloy/__init__.py: English docstring.  Version 1.6.0.
+	* pyproject.toml: Version 1.6.0, English description, author and
+	maintainer, license files COPYING and THANKS.
+	* MANIFEST.in: Follow the new file names; ship man/.
+	* openalloy/locales: New message for install.sh; source references.
+	* All source files: SPDX license identifier and copyright line.
+	* openalloy/application/effects/base.py (Param._number): New; reject
+	non-numeric and non-finite effect parameters with a translatable
+	message.  (Param._coerce): Use it.
+	* openalloy/locales: Drop the unused "{name}: invalid number".
+	* tools/i18n.py (preamble): GNU comment block and translator header
+	fields in the catalogs.
+	* tools/test_install.sh: Check the manual pages and the new
+	uninstall.sh.
+	* tests/test_release_1_6_0.py: New; package metadata, GNU files,
+	manual pages, the installer and effect number parameters.
+
+2026-10-31  Everton Vilhena Cardoso
+
+	Release 1.5.4: defects found by the test lab.
+
+	* openalloy/resources/60-openalloy.rules: Match on the hidraw node
+	through IMPORT{builtin}="usb_id" and ID_VENDOR_ID, ID_MODEL_ID,
+	ID_USB_INTERFACE_NUM (interfaces 02 and 03 only).
+	* openalloy/application/engine.py (_set_mode): Reopen the device when
+	leaving fixed mode for onboard, so the release reaches the firmware.
+	(_onboard_replugged): New; notice a replug in onboard mode.
+	* openalloy/presentation/gui/app.py: Deliver replies with
+	GLib.PRIORITY_DEFAULT.  (_show_lighting): Wait for the initial data.
+	* openalloy/presentation/cli/main.py (preset delete): Fail on a
+	missing preset.
+	* openalloy/infra/drivers.py (_try_vendor): Log a refusal once.
+	* lab/: New test lab.
+	* tests/test_udev_rules.py, tests/test_fixes_1_5_4.py,
+	tests/test_gui_priority.py: New.
+
+2026-10-30  Everton Vilhena Cardoso
+
+	Release 1.5.3: suspend with frozen user services, service shutdown,
+	English-only journal, RPC queue limits, CLI fixes.
+
+	* openalloy/resources/openalloy-sleep: Do not talk to frozen user
+	services; short timeout; send the time of the notice.
+	* openalloy/application/engine.py (_check_resume, boottime): Detect a
+	resume from the clocks; ignore a stale sleep notice.
+	* openalloy/presentation/daemon/main.py: Lock-free signal handlers.
+	* openalloy/infra/rpc.py: Byte-bounded output queue; shutdown race.
+	* openalloy/i18n/__init__.py (Message): Lazily translated messages.
+	* openalloy/infra/logging_config.py: Log errors in English.
+
+2026-10-30  Everton Vilhena Cardoso
+
+	Releases 1.0.0 to 1.5.2.  See NEWS for the user-visible changes of
+	each release.
+
+
+Copyright (C) 2026 Everton Vilhena Cardoso
+
+Copying and distribution of this file, with or without modification, are
+permitted provided the copyright notice and this notice are preserved.

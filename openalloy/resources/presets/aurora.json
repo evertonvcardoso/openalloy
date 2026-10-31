@@ -1,0 +1,16 @@
+{
+  "name": "Aurora",
+  "lighting": {
+    "effect": "colorwave",
+    "params": {
+      "colors": [
+        "#00ffaa",
+        "#7800ff"
+      ],
+      "speed": 15,
+      "direction": "right",
+      "scale": 60
+    },
+    "keys": {}
+  }
+}

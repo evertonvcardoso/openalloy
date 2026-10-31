@@ -1,0 +1,148 @@
+.\" Manual page for openalloyd(1).
+.\" Copyright (C) 2026 Everton Vilhena Cardoso
+.\" SPDX-License-Identifier: GPL-2.0-or-later
+.TH OPENALLOYD 1 "October 2026" "OpenAlloy 1.6.0" "User Commands"
+.SH NAME
+openalloyd \- OpenAlloy lighting service for the HyperX Alloy Origins Core
+.SH SYNOPSIS
+.B openalloyd
+.RB [ \-\-socket
+.IR PATH ]
+.RB [ \-v ]
+.RB [ \-\-simulate | \-\-simulate\-hp ]
+.RB [ \-\-sim\-layout " " ansi | abnt2 | iso ]
+.SH DESCRIPTION
+.B openalloyd
+keeps the lighting of a HyperX Alloy Origins Core keyboard running for the
+logged\-in user.
+It is normally started by the systemd
+.B user
+service
+.I openalloy.service
+that
+.B install.sh
+installs; it never runs as root.
+.PP
+The service finds the keyboard by USB ID and interface, chooses the vendor
+channel (interface 2) or HID LampArray (interface 3), and works in one of three
+modes:
+.TP
+.B live
+Effects are rendered and sent continuously (default 30 frames per second).
+Unchanged frames are only refreshed so that the firmware does not fall back to
+its onboard profile.
+.TP
+.B fixed
+A color is sent once and the keyboard is left alone (HID LampArray).
+The service only watches the keyboard and sends the color again after an
+unplug, a reboot or a system resume.
+.TP
+.B onboard
+The keyboard firmware shows its own profile.
+.PP
+The service reconnects by itself when the keyboard is replugged, detects a
+system resume by comparing
+.B CLOCK_BOOTTIME
+and
+.B CLOCK_MONOTONIC
+(so it works even while systemd freezes user services during sleep hooks), and
+restores the saved lighting.
+.PP
+.BR openalloy (1)
+and its graphical interface talk to the service through a Unix socket with a
+line\-based JSON protocol; changes apply at once, without restarting.
+The socket is private to the user, and requests are bounded in size and number.
+.SH OPTIONS
+.TP
+.BI \-\-socket " PATH"
+Socket path (default:
+.IR $XDG_RUNTIME_DIR/openalloy.sock ).
+.TP
+.BR \-v ", " \-\-verbose
+More detailed log.
+.TP
+.B \-\-simulate
+Use a simulated keyboard (vendor channel, firmware 21.08).
+.TP
+.B \-\-simulate\-hp
+Simulate the HP 03f0:098f with firmware 21.16 (HID LampArray only).
+.TP
+.BR \-\-sim\-layout " " ansi | abnt2 | iso
+Layout of the simulated keyboard (default
+.BR abnt2 ).
+.TP
+.BR \-h ", " \-\-help
+Show help and exit.
+.SH SIGNALS
+.TP
+.BR SIGTERM ", " SIGINT
+Hand the LEDs back to the firmware where appropriate, close the keyboard and
+exit.
+.TP
+.B SIGHUP
+Reload the settings file.
+.SH SYSTEM SLEEP
+The hook
+.I /usr/lib/systemd/system\-sleep/openalloy
+(or
+.I /etc/systemd/system\-sleep/openalloy
+on read\-only
+.IR /usr )
+resets the keyboard's USB device before suspend so that the firmware restarts
+on its onboard profile; a keyboard left in direct mode without frames may stop
+waking the computer.
+When user services are not frozen it also tells each running service, with a
+short timeout.
+The hook never makes the sleep fail.
+.SH LOGGING
+Messages go to standard error and, under systemd, to the journal, always in
+English:
+.PP
+.RS
+.B journalctl \-\-user \-u openalloy \-f
+.RE
+.SH ENVIRONMENT
+.TP
+.B OPENALLOY_ENABLE_FLASH
+Set to
+.B I_ACCEPT_THE_RISK
+to unlock onboard writes without the live RGB test.
+.TP
+.B OPENALLOY_SOCKET
+Socket path when
+.B \-\-socket
+is not given.
+.TP
+.BR XDG_CONFIG_HOME ", " XDG_RUNTIME_DIR
+Locations of the settings and of the socket.
+.SH FILES
+.TP
+.I ~/.config/systemd/user/openalloy.service
+The user service.
+.TP
+.I ~/.config/openalloy/config.json
+Settings, shared with
+.BR openalloy (1).
+.TP
+.I $XDG_RUNTIME_DIR/openalloy.sock
+Control socket.
+.SH EXAMPLES
+.nf
+systemctl \-\-user status openalloy
+systemctl \-\-user restart openalloy
+openalloyd \-\-simulate\-hp \-v      # try it without the keyboard
+.fi
+.SH AUTHOR
+Written by Everton Vilhena Cardoso.
+.SH COPYRIGHT
+Copyright \(co 2026 Everton Vilhena Cardoso.
+License GPLv2+: GNU GPL version 2 or later
+<https://gnu.org/licenses/old\-licenses/gpl\-2.0.html>.
+.br
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+.SH SEE ALSO
+.BR openalloy (1),
+.BR systemd.service (5),
+.BR systemd\-sleep (8),
+.BR journalctl (1)

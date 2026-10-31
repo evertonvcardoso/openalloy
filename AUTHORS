@@ -1,0 +1,12 @@
+Authors of OpenAlloy
+====================
+
+Everton Vilhena Cardoso
+    Author and maintainer. Design, implementation, documentation, translations
+    (English and Brazilian Portuguese), testing on real hardware (HyperX Alloy
+    Origins Core HP 03f0:098f, firmware 21.16) and releases.
+
+There are no other contributors at this time.
+
+OpenAlloy also builds on the work of other free software projects. They are
+not authors of OpenAlloy; they are credited, with their licenses, in THANKS.

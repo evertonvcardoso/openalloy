@@ -1,0 +1,13 @@
+{
+  "name": "Rainbow wave",
+  "lighting": {
+    "effect": "wave",
+    "params": {
+      "speed": 30,
+      "direction": "right",
+      "scale": 100,
+      "saturation": 100
+    },
+    "keys": {}
+  }
+}

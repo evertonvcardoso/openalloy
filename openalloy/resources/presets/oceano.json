@@ -1,0 +1,17 @@
+{
+  "name": "Ocean",
+  "lighting": {
+    "effect": "colorwave",
+    "params": {
+      "colors": [
+        "#001aff",
+        "#00d4ff",
+        "#00ffb0"
+      ],
+      "speed": 12,
+      "direction": "up",
+      "scale": 100
+    },
+    "keys": {}
+  }
+}

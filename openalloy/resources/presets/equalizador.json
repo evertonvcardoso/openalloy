@@ -1,0 +1,12 @@
+{
+  "name": "Equalizer (sound)",
+  "lighting": {
+    "effect": "equalizer",
+    "params": {
+      "color": "#00ff5a",
+      "peak": "#ff2800",
+      "background": "#040408"
+    },
+    "keys": {}
+  }
+}

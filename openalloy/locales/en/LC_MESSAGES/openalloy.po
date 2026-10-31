@@ -1,0 +1,2595 @@
+# English (source language) messages for OpenAlloy.
+# Copyright (C) 2026 Everton Vilhena Cardoso
+# This file is distributed under the same license as the openalloy package.
+# Everton Vilhena Cardoso, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: openalloy 1.6.0\n"
+"POT-Creation-Date: 2026-10-31 08:52+0000\n"
+"Last-Translator: Everton Vilhena Cardoso\n"
+"Language-Team: Everton Vilhena Cardoso\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: openalloy/application/backend.py:174
+msgid "the service is not running (systemctl --user start openalloy)"
+msgstr "the service is not running (systemctl --user start openalloy)"
+
+#: openalloy/application/backend.py:38
+#, python-brace-format
+msgid "keys not allowed: {keys}"
+msgstr "keys not allowed: {keys}"
+
+#: openalloy/application/backend.py:57 openalloy/presentation/cli/main.py:359 openalloy/presentation/cli/main.py:366 openalloy/presentation/cli/main.py:649 openalloy/presentation/cli/main.py:600
+#, python-brace-format
+msgid "preset not found: {name}"
+msgstr "preset not found: {name}"
+
+#: openalloy/application/backend.py:154 openalloy/infra/rpc.py:358
+#, python-brace-format
+msgid "unknown method: {method}"
+msgstr "unknown method: {method}"
+
+#: openalloy/application/effects/__init__.py:24
+#, python-brace-format
+msgid "unknown effect: {effect!r}. Available: {available}"
+msgstr "unknown effect: {effect!r}. Available: {available}"
+
+#: openalloy/application/effects/base.py:40
+msgid "Left → right"
+msgstr "Left → right"
+
+#: openalloy/application/effects/base.py:41
+msgid "Right → left"
+msgstr "Right → left"
+
+#: openalloy/application/effects/base.py:42
+msgid "Top → bottom"
+msgstr "Top → bottom"
+
+#: openalloy/application/effects/base.py:43
+msgid "Bottom → top"
+msgstr "Bottom → top"
+
+#: openalloy/application/effects/base.py:44
+msgid "Center → edges"
+msgstr "Center → edges"
+
+#: openalloy/application/effects/base.py:45
+msgid "Edges → center"
+msgstr "Edges → center"
+
+#: openalloy/application/effects/base.py:122
+msgid "Speed"
+msgstr "Speed"
+
+#: openalloy/application/effects/base.py:123
+msgid "1 = a ~10 s cycle, 100 = a ~0.6 s cycle"
+msgstr "1 = a ~10 s cycle, 100 = a ~0.6 s cycle"
+
+#: openalloy/application/effects/base.py:103 openalloy/application/effects/base.py:109 openalloy/application/effects/base.py:107
+#, python-brace-format
+msgid "{name}: a number is expected"
+msgstr "{name}: a number is expected"
+
+#: openalloy/application/effects/base.py:68
+#, python-brace-format
+msgid "{name}: invalid value {value!r}"
+msgstr "{name}: invalid value {value!r}"
+
+#: openalloy/application/effects/base.py:94
+#, python-brace-format
+msgid "{name}: invalid option {value!r}; use {choices}"
+msgstr "{name}: invalid option {value!r}; use {choices}"
+
+#: openalloy/application/effects/library.py:45
+msgid "Every key dark."
+msgstr "Every key dark."
+
+#: openalloy/application/effects/library.py:55
+msgid "One color on the whole keyboard. Use per-key painting to highlight keys."
+msgstr "One color on the whole keyboard. Use per-key painting to highlight keys."
+
+#: openalloy/application/effects/library.py:65
+msgid "Fades in and out smoothly, cycling through the colors (Linuity's gradual)."
+msgstr "Fades in and out smoothly, cycling through the colors (Linuity's gradual)."
+
+#: openalloy/application/effects/library.py:87
+msgid "The whole keyboard sweeps through the spectrum."
+msgstr "The whole keyboard sweeps through the spectrum."
+
+#: openalloy/application/effects/library.py:99
+msgid "A rainbow sliding across the keyboard."
+msgstr "A rainbow sliding across the keyboard."
+
+#: openalloy/application/effects/library.py:117
+msgid "A gradient of your colors rolling across the keyboard."
+msgstr "A gradient of your colors rolling across the keyboard."
+
+#: openalloy/application/effects/library.py:135
+msgid "A still gradient between the colors."
+msgstr "A still gradient between the colors."
+
+#: openalloy/application/effects/library.py:148
+msgid "A band sweeping back and forth with a trail (Linuity's scanner)."
+msgstr "A band sweeping back and forth with a trail (Linuity's scanner)."
+
+#: openalloy/application/effects/library.py:170
+msgid "Turns on and off (Linuity's blink)."
+msgstr "Turns on and off (Linuity's blink)."
+
+#: openalloy/application/effects/library.py:186
+msgid "Candle-like flicker, independent per key (Linuity's flicker)."
+msgstr "Candle-like flicker, independent per key (Linuity's flicker)."
+
+#: openalloy/application/effects/library.py:210
+msgid "Keys light up and fade at random."
+msgstr "Keys light up and fade at random."
+
+#: openalloy/application/effects/library.py:241
+msgid "Drops falling down each column, with a trail."
+msgstr "Drops falling down each column, with a trail."
+
+#: openalloy/application/effects/library.py:284
+msgid "Each pressed key lights up and fades (live mode only)."
+msgstr "Each pressed key lights up and fades (live mode only)."
+
+#: openalloy/application/effects/library.py:306
+msgid "Waves spread out from the pressed key (live mode only)."
+msgstr "Waves spread out from the pressed key (live mode only)."
+
+#: openalloy/application/effects/library.py:343
+msgid "Flames rising from the bottom keys, flickering."
+msgstr "Flames rising from the bottom keys, flickering."
+
+#: openalloy/application/effects/library.py:369
+msgid "A snake crawls across the keyboard row by row, zig-zagging."
+msgstr "A snake crawls across the keyboard row by row, zig-zagging."
+
+#: openalloy/application/effects/library.py:433
+msgid "Frequency bars: bass on the left, treble on the right (system sound)."
+msgstr "Frequency bars: bass on the left, treble on the right (system sound)."
+
+#: openalloy/application/effects/library.py:451
+msgid "The keyboard's rainbow lights up with each frequency band."
+msgstr "The keyboard's rainbow lights up with each frequency band."
+
+#: openalloy/application/effects/library.py:465
+msgid "The whole keyboard pulses on the beats (bass) of the music."
+msgstr "The whole keyboard pulses on the beats (bass) of the music."
+
+#: openalloy/application/effects/library.py:485
+msgid "A two-color wave whose speed and brightness follow the volume."
+msgstr "A two-color wave whose speed and brightness follow the volume."
+
+#: openalloy/application/effects/library.py:516
+msgid "None"
+msgstr "None"
+
+#: openalloy/application/effects/library.py:516
+msgid "Light up the key"
+msgstr "Light up the key"
+
+#: openalloy/application/effects/library.py:516 openalloy/application/effects/library.py:305
+msgid "Ripple"
+msgstr "Ripple"
+
+#: openalloy/application/effects/library.py:44
+msgid "Off"
+msgstr "Off"
+
+#: openalloy/application/effects/library.py:54
+msgid "Static color"
+msgstr "Static color"
+
+#: openalloy/application/effects/library.py:64
+msgid "Breathing"
+msgstr "Breathing"
+
+#: openalloy/application/effects/library.py:86
+msgid "Color cycle"
+msgstr "Color cycle"
+
+#: openalloy/application/effects/library.py:98
+msgid "Rainbow wave"
+msgstr "Rainbow wave"
+
+#: openalloy/application/effects/library.py:116
+msgid "Color wave"
+msgstr "Color wave"
+
+#: openalloy/application/effects/library.py:134
+msgid "Static gradient"
+msgstr "Static gradient"
+
+#: openalloy/application/effects/library.py:147
+msgid "Scanner"
+msgstr "Scanner"
+
+#: openalloy/application/effects/library.py:169
+msgid "Blink"
+msgstr "Blink"
+
+#: openalloy/application/effects/library.py:185
+msgid "Candle"
+msgstr "Candle"
+
+#: openalloy/application/effects/library.py:209
+msgid "Starlight"
+msgstr "Starlight"
+
+#: openalloy/application/effects/library.py:240
+msgid "Digital rain"
+msgstr "Digital rain"
+
+#: openalloy/application/effects/library.py:283
+msgid "Reactive"
+msgstr "Reactive"
+
+#: openalloy/application/effects/library.py:342
+msgid "Fire"
+msgstr "Fire"
+
+#: openalloy/application/effects/library.py:368
+msgid "Snake"
+msgstr "Snake"
+
+#: openalloy/application/effects/library.py:428
+msgid "Sensitivity (%)"
+msgstr "Sensitivity (%)"
+
+#: openalloy/application/effects/library.py:432
+msgid "Equalizer"
+msgstr "Equalizer"
+
+#: openalloy/application/effects/library.py:450
+msgid "Sound spectrum"
+msgstr "Sound spectrum"
+
+#: openalloy/application/effects/library.py:464
+msgid "Sound pulse"
+msgstr "Sound pulse"
+
+#: openalloy/application/effects/library.py:484
+msgid "Music wave"
+msgstr "Music wave"
+
+#: openalloy/application/effects/library.py:518 openalloy/presentation/gui/app.py:339
+msgid "Key reaction"
+msgstr "Key reaction"
+
+#: openalloy/application/effects/library.py:519
+msgid "Reaction color"
+msgstr "Reaction color"
+
+#: openalloy/application/effects/library.py:520
+msgid "Random color per key"
+msgstr "Random color per key"
+
+#: openalloy/application/effects/library.py:521 openalloy/application/effects/library.py:288
+msgid "Duration (s)"
+msgstr "Duration (s)"
+
+#: openalloy/application/effects/library.py:522
+msgid "Wave speed"
+msgstr "Wave speed"
+
+#: openalloy/application/effects/library.py:56 openalloy/application/effects/library.py:150 openalloy/application/effects/library.py:172 openalloy/application/effects/library.py:188 openalloy/application/effects/library.py:243 openalloy/application/effects/library.py:371
+msgid "Color"
+msgstr "Color"
+
+#: openalloy/application/effects/library.py:67 openalloy/application/effects/library.py:119 openalloy/application/effects/library.py:137
+msgid "Colors"
+msgstr "Colors"
+
+#: openalloy/application/effects/library.py:69 openalloy/application/effects/library.py:189
+msgid "Minimum brightness (%)"
+msgstr "Minimum brightness (%)"
+
+#: openalloy/application/effects/library.py:88 openalloy/application/effects/library.py:104 openalloy/application/effects/library.py:452
+msgid "Saturation (%)"
+msgstr "Saturation (%)"
+
+#: openalloy/application/effects/library.py:102 openalloy/application/effects/library.py:121 openalloy/application/effects/library.py:138 openalloy/application/effects/library.py:488
+msgid "Direction"
+msgstr "Direction"
+
+#: openalloy/application/effects/library.py:103 openalloy/application/effects/library.py:122
+msgid "Wave width"
+msgstr "Wave width"
+
+#: openalloy/application/effects/library.py:151 openalloy/application/effects/library.py:213 openalloy/application/effects/library.py:244 openalloy/application/effects/library.py:287 openalloy/application/effects/library.py:309 openalloy/application/effects/library.py:372 openalloy/application/effects/library.py:436
+msgid "Background"
+msgstr "Background"
+
+#: openalloy/application/effects/library.py:153
+msgid "Width (%)"
+msgstr "Width (%)"
+
+#: openalloy/application/effects/library.py:154
+msgid "Vertical"
+msgstr "Vertical"
+
+#: openalloy/application/effects/library.py:173
+msgid "Interval (s)"
+msgstr "Interval (s)"
+
+#: openalloy/application/effects/library.py:174
+msgid "Time lit (%)"
+msgstr "Time lit (%)"
+
+#: openalloy/application/effects/library.py:190
+msgid "Maximum brightness (%)"
+msgstr "Maximum brightness (%)"
+
+#: openalloy/application/effects/library.py:212
+msgid "Star colors"
+msgstr "Star colors"
+
+#: openalloy/application/effects/library.py:214
+msgid "Density (%)"
+msgstr "Density (%)"
+
+#: openalloy/application/effects/library.py:246
+msgid "Trail (%)"
+msgstr "Trail (%)"
+
+#: openalloy/application/effects/library.py:286
+msgid "Color on key press"
+msgstr "Color on key press"
+
+#: openalloy/application/effects/library.py:308
+msgid "Wave color"
+msgstr "Wave color"
+
+#: openalloy/application/effects/library.py:310
+msgid "Rainbow"
+msgstr "Rainbow"
+
+#: openalloy/application/effects/library.py:311
+msgid "Speed (keys/s)"
+msgstr "Speed (keys/s)"
+
+#: openalloy/application/effects/library.py:312
+msgid "Thickness (keys)"
+msgstr "Thickness (keys)"
+
+#: openalloy/application/effects/library.py:344
+msgid "Flame height (%)"
+msgstr "Flame height (%)"
+
+#: openalloy/application/effects/library.py:374
+msgid "Length (keys)"
+msgstr "Length (keys)"
+
+#: openalloy/application/effects/library.py:375
+msgid "Reverse direction"
+msgstr "Reverse direction"
+
+#: openalloy/application/effects/library.py:434
+msgid "Base color"
+msgstr "Base color"
+
+#: openalloy/application/effects/library.py:435
+msgid "Peak color"
+msgstr "Peak color"
+
+#: openalloy/application/effects/library.py:437 openalloy/application/effects/library.py:453
+msgid "Reverse"
+msgstr "Reverse"
+
+#: openalloy/application/effects/library.py:466
+msgid "Calm color"
+msgstr "Calm color"
+
+#: openalloy/application/effects/library.py:467
+msgid "Color on the beat"
+msgstr "Color on the beat"
+
+#: openalloy/application/effects/library.py:486
+msgid "Color 1"
+msgstr "Color 1"
+
+#: openalloy/application/effects/library.py:487
+msgid "Color 2"
+msgstr "Color 2"
+
+#: openalloy/application/effects/library.py:103
+msgid "% of the keyboard per color cycle"
+msgstr "% of the keyboard per color cycle"
+
+#: openalloy/application/engine.py:632
+msgid "This keyboard/firmware does not accept the vendor memory channel; it is driven through the HID LampArray standard (Dynamic Lighting), which allows live colors but no profiles and no writing to memory."
+msgstr "This keyboard/firmware does not accept the vendor memory channel; it is driven through the HID LampArray standard (Dynamic Lighting), which allows live colors but no profiles and no writing to memory."
+
+#: openalloy/application/engine.py:709 openalloy/infra/drivers.py:275
+msgid "done"
+msgstr "done"
+
+#: openalloy/application/engine.py:514 openalloy/application/engine.py:170
+#, python-brace-format
+msgid "Keyboard not detected: {error}"
+msgstr "Keyboard not detected: {error}"
+
+#: openalloy/application/engine.py:539 openalloy/application/engine.py:540
+msgid "off"
+msgstr "off"
+
+#: openalloy/application/engine.py:723
+msgid "unavailable: this firmware only accepts the HID LampArray standard (live colors), without memory access"
+msgstr "unavailable: this firmware only accepts the HID LampArray standard (live colors), without memory access"
+
+#: openalloy/application/engine.py:427
+msgid "capture inactive"
+msgstr "capture inactive"
+
+#: openalloy/application/engine.py:680
+#, python-brace-format
+msgid "Writing to memory is blocked: {reason}."
+msgstr "Writing to memory is blocked: {reason}."
+
+#: openalloy/application/engine.py:687
+msgid "keypress must be match, black, keep or custom"
+msgstr "keypress must be match, black, keep or custom"
+
+#: openalloy/application/engine.py:164
+#, python-brace-format
+msgid "{error}. Install the udev rule (install.sh) and replug the keyboard."
+msgstr "{error}. Install the udev rule (install.sh) and replug the keyboard."
+
+#: openalloy/application/engine.py:281
+#, python-brace-format
+msgid "Connection lost: {error}"
+msgstr "Connection lost: {error}"
+
+#: openalloy/application/engine.py:515 openalloy/infra/drivers.py:373
+msgid "HyperX Alloy Origins Core not found"
+msgstr "HyperX Alloy Origins Core not found"
+
+#: openalloy/application/engine.py:540
+msgid "on"
+msgstr "on"
+
+#: openalloy/application/engine.py:550
+msgid "the system is asleep; the keyboard was released"
+msgstr "the system is asleep; the keyboard was released"
+
+#: openalloy/application/engine.py:551 openalloy/application/flashgate.py:41
+msgid "keyboard not connected"
+msgstr "keyboard not connected"
+
+#: openalloy/application/engine.py:704
+msgid "writing the key-press layer"
+msgstr "writing the key-press layer"
+
+#: openalloy/application/engine.py:172
+#, python-brace-format
+msgid "Keyboard found, but communication failed: {error}"
+msgstr "Keyboard found, but communication failed: {error}"
+
+#: openalloy/application/flashgate.py:75
+msgid "Function-key row (Esc, F1-F12, PrtSc...) GREEN, the left half of the other keys RED and the right half BLUE."
+msgstr "Function-key row (Esc, F1-F12, PrtSc...) GREEN, the left half of the other keys RED and the right half BLUE."
+
+#: openalloy/application/flashgate.py:43
+msgid "simulated keyboard"
+msgstr "simulated keyboard"
+
+#: openalloy/application/flashgate.py:48
+msgid "first confirm that live RGB works on this keyboard - the 'Test RGB' button or 'openalloy test-rgb'. That way nothing is written to the flash of a firmware that does not understand the commands"
+msgstr "first confirm that live RGB works on this keyboard - the 'Test RGB' button or 'openalloy test-rgb'. That way nothing is written to the flash of a firmware that does not understand the commands"
+
+#: openalloy/application/flashgate.py:55
+#, python-brace-format
+msgid "live RGB confirmed on {date}"
+msgstr "live RGB confirmed on {date}"
+
+#: openalloy/application/flashgate.py:45
+#, python-brace-format
+msgid "unlocked by the {variable} variable"
+msgstr "unlocked by the {variable} variable"
+
+#: openalloy/application/flashgate.py:52
+#, python-brace-format
+msgid "the firmware changed ({old} -> {new}); test live RGB again"
+msgstr "the firmware changed ({old} -> {new}); test live RGB again"
+
+#: openalloy/config/settings.py:83
+msgid "true or false is expected"
+msgstr "true or false is expected"
+
+#: openalloy/config/settings.py:90 openalloy/config/settings.py:96 openalloy/config/settings.py:94
+msgid "a number is expected"
+msgstr "a number is expected"
+
+#: openalloy/config/settings.py:103 openalloy/config/settings.py:57
+#, python-brace-format
+msgid "must be between {low} and {high}"
+msgstr "must be between {low} and {high}"
+
+#: openalloy/config/settings.py:114
+#, python-brace-format
+msgid "an object like {example} is expected"
+msgstr "an object like {example} is expected"
+
+#: openalloy/config/settings.py:125
+msgid "text is expected"
+msgstr "text is expected"
+
+#: openalloy/config/settings.py:133 openalloy/config/settings.py:69
+#, python-brace-format
+msgid "use one of: {choices}"
+msgstr "use one of: {choices}"
+
+#: openalloy/config/settings.py:164
+#, python-brace-format
+msgid "{key}: invalid value {value!r} ({reason})"
+msgstr "{key}: invalid value {value!r} ({reason})"
+
+#: openalloy/config/settings.py:366
+msgid "Give the preset a name."
+msgstr "Give the preset a name."
+
+#: openalloy/config/settings.py:368
+msgid "Invalid lighting."
+msgstr "Invalid lighting."
+
+#: openalloy/domain/colors.py:46 openalloy/domain/colors.py:50
+#, python-brace-format
+msgid "invalid color: {value!r}"
+msgstr "invalid color: {value!r}"
+
+#: openalloy/i18n/argparse_messages.py:15
+msgid "usage: "
+msgstr "usage: "
+
+#: openalloy/i18n/argparse_messages.py:16
+msgid "positional arguments"
+msgstr "positional arguments"
+
+#: openalloy/i18n/argparse_messages.py:17
+msgid "options"
+msgstr "options"
+
+#: openalloy/i18n/argparse_messages.py:18
+msgid "subcommands"
+msgstr "subcommands"
+
+#: openalloy/i18n/argparse_messages.py:19
+#, python-format
+msgid "%(heading)s:"
+msgstr "%(heading)s:"
+
+#: openalloy/i18n/argparse_messages.py:20
+#, python-format
+msgid " (default: %(default)s)"
+msgstr " (default: %(default)s)"
+
+#: openalloy/i18n/argparse_messages.py:21
+msgid "show this help message and exit"
+msgstr "show this help message and exit"
+
+#: openalloy/i18n/argparse_messages.py:22
+msgid "show program's version number and exit"
+msgstr "show program's version number and exit"
+
+#: openalloy/i18n/argparse_messages.py:23
+#, python-format
+msgid "%(prog)s: error: %(message)s\n"
+msgstr "%(prog)s: error: %(message)s\n"
+
+#: openalloy/i18n/argparse_messages.py:24
+#, python-format
+msgid "%(prog)s: warning: %(message)s\n"
+msgstr "%(prog)s: warning: %(message)s\n"
+
+#: openalloy/i18n/argparse_messages.py:25
+#, python-format
+msgid "the following arguments are required: %s"
+msgstr "the following arguments are required: %s"
+
+#: openalloy/i18n/argparse_messages.py:26
+#, python-format
+msgid "one of the arguments %s is required"
+msgstr "one of the arguments %s is required"
+
+#: openalloy/i18n/argparse_messages.py:27
+#, python-format
+msgid "unrecognized arguments: %s"
+msgstr "unrecognized arguments: %s"
+
+#: openalloy/i18n/argparse_messages.py:28
+#, python-format
+msgid "unexpected option string: %s"
+msgstr "unexpected option string: %s"
+
+#: openalloy/i18n/argparse_messages.py:29
+#, python-format
+msgid "ambiguous option: %(option)s could match %(matches)s"
+msgstr "ambiguous option: %(option)s could match %(matches)s"
+
+#: openalloy/i18n/argparse_messages.py:30
+#, python-format
+msgid "argument %(argument_name)s: %(message)s"
+msgstr "argument %(argument_name)s: %(message)s"
+
+#: openalloy/i18n/argparse_messages.py:31
+#, python-format
+msgid "argument '%(argument_name)s' is deprecated"
+msgstr "argument '%(argument_name)s' is deprecated"
+
+#: openalloy/i18n/argparse_messages.py:32
+#, python-format
+msgid "option '%(option)s' is deprecated"
+msgstr "option '%(option)s' is deprecated"
+
+#: openalloy/i18n/argparse_messages.py:33
+#, python-format
+msgid "command '%(parser_name)s' is deprecated"
+msgstr "command '%(parser_name)s' is deprecated"
+
+#: openalloy/i18n/argparse_messages.py:34
+#, python-format
+msgid "invalid choice: %(value)r (choose from %(choices)s)"
+msgstr "invalid choice: %(value)r (choose from %(choices)s)"
+
+#: openalloy/i18n/argparse_messages.py:35
+#, python-format
+msgid "invalid %(type)s value: %(value)r"
+msgstr "invalid %(type)s value: %(value)r"
+
+#: openalloy/i18n/argparse_messages.py:36
+#, python-format
+msgid "not allowed with argument %s"
+msgstr "not allowed with argument %s"
+
+#: openalloy/i18n/argparse_messages.py:37
+#, python-format
+msgid "ignored explicit argument %r"
+msgstr "ignored explicit argument %r"
+
+#: openalloy/i18n/argparse_messages.py:38
+msgid "expected one argument"
+msgstr "expected one argument"
+
+#: openalloy/i18n/argparse_messages.py:39
+msgid "expected at least one argument"
+msgstr "expected at least one argument"
+
+#: openalloy/i18n/argparse_messages.py:40
+msgid "expected at most one argument"
+msgstr "expected at most one argument"
+
+#: openalloy/i18n/argparse_messages.py:41
+#, python-format
+msgid "expected %s argument"
+msgid_plural "expected %s arguments"
+msgstr[0] "expected %s argument"
+msgstr[1] "expected %s arguments"
+
+#: openalloy/i18n/argparse_messages.py:42
+#, python-format
+msgid "unknown parser %(parser_name)r (choices: %(choices)s)"
+msgstr "unknown parser %(parser_name)r (choices: %(choices)s)"
+
+#: openalloy/i18n/argparse_messages.py:43
+#, python-format
+msgid "can't open '%(filename)s': %(error)s"
+msgstr "can't open '%(filename)s': %(error)s"
+
+#: openalloy/i18n/argparse_messages.py:44
+#, python-format
+msgid "argument \"-\" with mode %r"
+msgstr "argument \"-\" with mode %r"
+
+#: openalloy/infra/audio.py:132
+msgid "install pulseaudio-utils (parec) or pipewire (pw-record)"
+msgstr "install pulseaudio-utils (parec) or pipewire (pw-record)"
+
+#: openalloy/infra/audio.py:146
+#, python-brace-format
+msgid "could not start {program}: {error}"
+msgstr "could not start {program}: {error}"
+
+#: openalloy/infra/drivers.py:138
+msgid "device information"
+msgstr "device information"
+
+#: openalloy/infra/drivers.py:172
+msgid "set brightness"
+msgstr "set brightness"
+
+#: openalloy/infra/drivers.py:181
+msgid "select profile"
+msgstr "select profile"
+
+#: openalloy/infra/drivers.py:410
+#, python-brace-format
+msgid "the keyboard was found but refused the commands ({details})"
+msgstr "the keyboard was found but refused the commands ({details})"
+
+#: openalloy/infra/drivers.py:262
+msgid "starting the animation upload"
+msgstr "starting the animation upload"
+
+#: openalloy/infra/drivers.py:272
+msgid "finishing"
+msgstr "finishing"
+
+#: openalloy/infra/drivers.py:122
+#, python-brace-format
+msgid "{action}: the keyboard did not answer"
+msgstr "{action}: the keyboard did not answer"
+
+#: openalloy/infra/drivers.py:224
+#, python-brace-format
+msgid "frame count {count} outside 1-{max}"
+msgstr "frame count {count} outside 1-{max}"
+
+#: openalloy/infra/drivers.py:250
+msgid "reading the profile store"
+msgstr "reading the profile store"
+
+#: openalloy/infra/drivers.py:258
+msgid "rewriting the profile store"
+msgstr "rewriting the profile store"
+
+#: openalloy/infra/drivers.py:208
+#, python-brace-format
+msgid "write the key-press layer to profile {profile}"
+msgstr "write the key-press layer to profile {profile}"
+
+#: openalloy/infra/drivers.py:192
+#, python-brace-format
+msgid "reading profile {profile} part {part}: {status}"
+msgstr "reading profile {profile} part {part}: {status}"
+
+#: openalloy/infra/drivers.py:195
+#, python-brace-format
+msgid "truncated reply reading profile {profile}, part {part}"
+msgstr "truncated reply reading profile {profile}, part {part}"
+
+#: openalloy/infra/drivers.py:244
+msgid "could not read the profile store; writing refused so that no made-up data is written"
+msgstr "could not read the profile store; writing refused so that no made-up data is written"
+
+#: openalloy/infra/drivers.py:248
+msgid "truncated reply reading the profile store: write cancelled"
+msgstr "truncated reply reading the profile store: write cancelled"
+
+#: openalloy/infra/drivers.py:388
+#, python-brace-format
+msgid "vendor channel: {error}"
+msgstr "vendor channel: {error}"
+
+#: openalloy/infra/drivers.py:393
+msgid "vendor channel refused by the firmware"
+msgstr "vendor channel refused by the firmware"
+
+#: openalloy/infra/drivers.py:411
+msgid "no compatible driver"
+msgstr "no compatible driver"
+
+#: openalloy/infra/drivers.py:266
+#, python-brace-format
+msgid "frame {n}/{count}"
+msgstr "frame {n}/{count}"
+
+#: openalloy/infra/input.py:61 openalloy/infra/input.py:127
+msgid "stopped"
+msgstr "stopped"
+
+#: openalloy/infra/input.py:92
+msgid "keyboard not found"
+msgstr "keyboard not found"
+
+#: openalloy/infra/input.py:87
+#, python-brace-format
+msgid "active ({n} device)"
+msgid_plural "active ({n} devices)"
+msgstr[0] "active ({n} device)"
+msgstr[1] "active ({n} devices)"
+
+#: openalloy/infra/input.py:90
+#, python-brace-format
+msgid "no permission on {nodes}"
+msgstr "no permission on {nodes}"
+
+#: openalloy/infra/lamparray.py:96
+#, python-brace-format
+msgid "invalid LampArray attributes report ({size} bytes)"
+msgstr "invalid LampArray attributes report ({size} bytes)"
+
+#: openalloy/infra/lamparray.py:114
+#, python-brace-format
+msgid "invalid LED report ({size} bytes)"
+msgstr "invalid LED report ({size} bytes)"
+
+#: openalloy/infra/lamparray.py:219
+#, python-brace-format
+msgid "invalid LED count: {count}"
+msgstr "invalid LED count: {count}"
+
+#: openalloy/infra/lamparray.py:252
+#, python-brace-format
+msgid "LED {led} outside the advertised range"
+msgstr "LED {led} outside the advertised range"
+
+#: openalloy/infra/protocol.py:171
+msgid "the profile must be 1, 2 or 3"
+msgstr "the profile must be 1, 2 or 3"
+
+#: openalloy/infra/rpc.py:502
+#, python-brace-format
+msgid "{path} does not belong to this user; refusing to create the socket"
+msgstr "{path} does not belong to this user; refusing to create the socket"
+
+#: openalloy/infra/rpc.py:361
+msgid "server busy; try again"
+msgstr "server busy; try again"
+
+#: openalloy/infra/rpc.py:440
+msgid "connection closed by the service"
+msgstr "connection closed by the service"
+
+#: openalloy/infra/rpc.py:170
+#, python-brace-format
+msgid "a service is already running at {path}"
+msgstr "a service is already running at {path}"
+
+#: openalloy/infra/rpc.py:336
+msgid "invalid encoding (UTF-8 expected)"
+msgstr "invalid encoding (UTF-8 expected)"
+
+#: openalloy/infra/rpc.py:343
+msgid "the request must be an object"
+msgstr "the request must be an object"
+
+#: openalloy/infra/rpc.py:348
+msgid "invalid method/params"
+msgstr "invalid method/params"
+
+#: openalloy/infra/rpc.py:442
+#, python-brace-format
+msgid "timed out waiting for '{method}'"
+msgstr "timed out waiting for '{method}'"
+
+#: openalloy/infra/rpc.py:309 openalloy/infra/rpc.py:303
+msgid "request exceeds the size limit"
+msgstr "request exceeds the size limit"
+
+#: openalloy/infra/rpc.py:350
+#, python-brace-format
+msgid "invalid request: {error}"
+msgstr "invalid request: {error}"
+
+#: openalloy/infra/rpc.py:391
+#, python-brace-format
+msgid "invalid parameters: {error}"
+msgstr "invalid parameters: {error}"
+
+#: openalloy/infra/transport.py:179 openalloy/infra/transport.py:192 openalloy/infra/transport.py:206 openalloy/infra/transport.py:216
+msgid "device closed"
+msgstr "device closed"
+
+#: openalloy/infra/transport.py:186
+#, python-brace-format
+msgid "incomplete HID write: {written}/{total} bytes on {path}"
+msgstr "incomplete HID write: {written}/{total} bytes on {path}"
+
+#: openalloy/infra/transport.py:167
+#, python-brace-format
+msgid "no permission to open {path}"
+msgstr "no permission to open {path}"
+
+#: openalloy/infra/transport.py:170
+#, python-brace-format
+msgid "{path} does not exist"
+msgstr "{path} does not exist"
+
+#: openalloy/infra/transport.py:183
+#, python-brace-format
+msgid "write to {path} failed: {error}"
+msgstr "write to {path} failed: {error}"
+
+#: openalloy/infra/transport.py:201
+#, python-brace-format
+msgid "read from {path} failed: {error}"
+msgstr "read from {path} failed: {error}"
+
+#: openalloy/infra/transport.py:211
+#, python-brace-format
+msgid "sending report {report} to {path} failed: {error}"
+msgstr "sending report {report} to {path} failed: {error}"
+
+#: openalloy/infra/transport.py:222
+#, python-brace-format
+msgid "reading report {report} from {path} failed: {error}"
+msgstr "reading report {report} from {path} failed: {error}"
+
+#: openalloy/presentation/cli/main.py:122
+msgid "HID LampArray / Dynamic Lighting (interface 3)"
+msgstr "HID LampArray / Dynamic Lighting (interface 3)"
+
+#: openalloy/presentation/cli/main.py:123
+msgid "vendor channel (interface 2)"
+msgstr "vendor channel (interface 2)"
+
+#: openalloy/presentation/cli/main.py:161
+msgid "live (software)"
+msgstr "live (software)"
+
+#: openalloy/presentation/cli/main.py:169
+msgid "Mode"
+msgstr "Mode"
+
+#: openalloy/presentation/cli/main.py:170 openalloy/presentation/gui/app.py:298
+msgid "Effect"
+msgstr "Effect"
+
+#: openalloy/presentation/cli/main.py:408
+msgid "Onboard memory mode: the keyboard shows the profile stored in it."
+msgstr "Onboard memory mode: the keyboard shows the profile stored in it."
+
+#: openalloy/presentation/cli/main.py:413
+msgid "Live mode resumed."
+msgstr "Live mode resumed."
+
+#: openalloy/presentation/cli/main.py:506
+msgid "Being identified does not guarantee the firmware accepts RGB commands: run 'openalloy test-rgb'"
+msgstr "Being identified does not guarantee the firmware accepts RGB commands: run 'openalloy test-rgb'"
+
+#: openalloy/presentation/cli/main.py:137 openalloy/presentation/cli/main.py:158 openalloy/presentation/gui/app.py:256
+msgid "Keyboard"
+msgstr "Keyboard"
+
+#: openalloy/presentation/cli/main.py:145 openalloy/presentation/gui/app.py:449
+msgid "Firmware"
+msgstr "Firmware"
+
+#: openalloy/presentation/cli/main.py:148 openalloy/presentation/gui/app.py:450
+msgid "Driver"
+msgstr "Driver"
+
+#: openalloy/presentation/cli/main.py:174
+msgid "Keys"
+msgstr "Keys"
+
+#: openalloy/presentation/cli/main.py:179
+msgid "Memory write"
+msgstr "Memory write"
+
+#: openalloy/presentation/cli/main.py:337
+msgid "give the file: openalloy preset export NAME FILE.json"
+msgstr "give the file: openalloy preset export NAME FILE.json"
+
+#: openalloy/presentation/cli/main.py:360
+msgid "Removed"
+msgstr "Removed"
+
+#: openalloy/presentation/cli/main.py:383
+msgid "look at the physical keyboard."
+msgstr "look at the physical keyboard."
+
+#: openalloy/presentation/cli/main.py:397 openalloy/presentation/cli/main.py:178
+msgid "unlocked"
+msgstr "unlocked"
+
+#: openalloy/presentation/cli/main.py:397 openalloy/presentation/cli/main.py:178
+msgid "blocked"
+msgstr "blocked"
+
+#: openalloy/presentation/cli/main.py:470
+msgid "systemctl not found"
+msgstr "systemctl not found"
+
+#: openalloy/presentation/cli/main.py:494
+msgid "Keyboard USB interfaces (read-only query, nothing is sent):"
+msgstr "Keyboard USB interfaces (read-only query, nothing is sent):"
+
+#: openalloy/presentation/cli/main.py:540
+msgid "udev rule not installed"
+msgstr "udev rule not installed"
+
+#: openalloy/presentation/cli/main.py:543
+msgid "Service stopped"
+msgstr "Service stopped"
+
+#: openalloy/presentation/cli/main.py:545
+msgid "systemd user service installed"
+msgstr "systemd user service installed"
+
+#: openalloy/presentation/cli/main.py:546
+msgid "systemd user service not installed"
+msgstr "systemd user service not installed"
+
+#: openalloy/presentation/cli/main.py:549
+msgid "Reading keys for reactive effects: available"
+msgstr "Reading keys for reactive effects: available"
+
+#: openalloy/presentation/cli/main.py:550
+msgid "Reading keys for reactive effects: unavailable (optional: install.sh --reactive or the input group)"
+msgstr "Reading keys for reactive effects: unavailable (optional: install.sh --reactive or the input group)"
+
+#: openalloy/presentation/cli/main.py:556
+msgid "GTK4 / PyGObject for the graphical interface"
+msgstr "GTK4 / PyGObject for the graphical interface"
+
+#: openalloy/presentation/cli/main.py:641
+msgid "LEDs handed back to the keyboard: it shows its own lighting again."
+msgstr "LEDs handed back to the keyboard: it shows its own lighting again."
+
+#: openalloy/presentation/cli/main.py:685
+msgid ""
+"OpenAlloy has exited and nothing is left running.\n"
+"  It lasts until the keyboard restarts (unplugging the cable, rebooting or\n"
+"  suspending the PC). To undo: openalloy hold --release"
+msgstr ""
+"OpenAlloy has exited and nothing is left running.\n"
+"  It lasts until the keyboard restarts (unplugging the cable, rebooting or\n"
+"  suspending the PC). To undo: openalloy hold --release"
+
+#: openalloy/presentation/cli/main.py:693
+msgid "HyperX Alloy Origins Core configurator for Linux"
+msgstr "HyperX Alloy Origins Core configurator for Linux"
+
+#: openalloy/presentation/cli/main.py:695
+msgid "show the version and exit"
+msgstr "show the version and exit"
+
+#: openalloy/presentation/cli/main.py:696
+msgid "CODE"
+msgstr "CODE"
+
+#: openalloy/presentation/cli/main.py:700
+msgid "use a simulated keyboard (no hardware)"
+msgstr "use a simulated keyboard (no hardware)"
+
+#: openalloy/presentation/cli/main.py:702 openalloy/presentation/daemon/main.py:37
+msgid "simulate the HP 03f0:098f fw 21.16 (HID LampArray only)"
+msgstr "simulate the HP 03f0:098f fw 21.16 (HID LampArray only)"
+
+#: openalloy/presentation/cli/main.py:704 openalloy/presentation/daemon/main.py:39
+msgid "layout of the simulated keyboard: ansi (US), abnt2 (default) or iso"
+msgstr "layout of the simulated keyboard: ansi (US), abnt2 (default) or iso"
+
+#: openalloy/presentation/cli/main.py:705
+msgid "JSON output"
+msgstr "JSON output"
+
+#: openalloy/presentation/cli/main.py:706 openalloy/presentation/daemon/main.py:41
+msgid "more detailed log"
+msgstr "more detailed log"
+
+#: openalloy/presentation/cli/main.py:707
+msgid "commands"
+msgstr "commands"
+
+#: openalloy/presentation/cli/main.py:707
+msgid "COMMAND"
+msgstr "COMMAND"
+
+#: openalloy/presentation/cli/main.py:709
+msgid "keyboard and effect state"
+msgstr "keyboard and effect state"
+
+#: openalloy/presentation/cli/main.py:710
+msgid "list effects and parameters"
+msgstr "list effects and parameters"
+
+#: openalloy/presentation/cli/main.py:731
+msgid "apply an effect live"
+msgstr "apply an effect live"
+
+#: openalloy/presentation/cli/main.py:733
+msgid "do not save it in the settings"
+msgstr "do not save it in the settings"
+
+#: openalloy/presentation/cli/main.py:735
+msgid "read or set the brightness"
+msgstr "read or set the brightness"
+
+#: openalloy/presentation/cli/main.py:736
+msgid "0-255, N%%, + or -"
+msgstr "0-255, N%%, + or -"
+
+#: openalloy/presentation/cli/main.py:738
+msgid "read or select the onboard profile (1-3)"
+msgstr "read or select the onboard profile (1-3)"
+
+#: openalloy/presentation/cli/main.py:741
+msgid "keyboard memory: read/write profiles"
+msgstr "keyboard memory: read/write profiles"
+
+#: openalloy/presentation/cli/main.py:745
+msgid "animation frames (1-255)"
+msgstr "animation frames (1-255)"
+
+#: openalloy/presentation/cli/main.py:747
+msgid "key-press layer: match | black | keep | #color"
+msgstr "key-press layer: match | black | keep | #color"
+
+#: openalloy/presentation/cli/main.py:748
+msgid "do not ask for confirmation"
+msgstr "do not ask for confirmation"
+
+#: openalloy/presentation/cli/main.py:750
+msgid "saved presets"
+msgstr "saved presets"
+
+#: openalloy/presentation/cli/main.py:755
+msgid "set a color and exit with nothing running (fixed color)"
+msgstr "set a color and exit with nothing running (fixed color)"
+
+#: openalloy/presentation/cli/main.py:756
+msgid "color, e.g. '#ff0000' or red"
+msgstr "color, e.g. '#ff0000' or red"
+
+#: openalloy/presentation/cli/main.py:757 openalloy/presentation/cli/main.py:723
+msgid "KEY=COLOR"
+msgstr "KEY=COLOR"
+
+#: openalloy/presentation/cli/main.py:758
+msgid "color per key/group, e.g. -k wasd=white"
+msgstr "color per key/group, e.g. -k wasd=white"
+
+#: openalloy/presentation/cli/main.py:759
+msgid "use a preset (animated effects stay still)"
+msgstr "use a preset (animated effects stay still)"
+
+#: openalloy/presentation/cli/main.py:760
+msgid "0-255 or N%%"
+msgstr "0-255 or N%%"
+
+#: openalloy/presentation/cli/main.py:761
+msgid "hand the LEDs back to the keyboard"
+msgstr "hand the LEDs back to the keyboard"
+
+#: openalloy/presentation/cli/main.py:763
+msgid "stop the openalloy service first (it would take the keyboard back)"
+msgstr "stop the openalloy service first (it would take the keyboard back)"
+
+#: openalloy/presentation/cli/main.py:764
+msgid "test live RGB and unlock writing to memory"
+msgstr "test live RGB and unlock writing to memory"
+
+#: openalloy/presentation/cli/main.py:767
+msgid "answer 'it worked' without asking"
+msgstr "answer 'it worked' without asking"
+
+#: openalloy/presentation/cli/main.py:769
+msgid "answer 'it did not work' without asking"
+msgstr "answer 'it did not work' without asking"
+
+#: openalloy/presentation/cli/main.py:770
+msgid "stop live mode and show the onboard profile"
+msgstr "stop live mode and show the onboard profile"
+
+#: openalloy/presentation/cli/main.py:771
+msgid "go back to live mode"
+msgstr "go back to live mode"
+
+#: openalloy/presentation/cli/main.py:772
+msgid "show/change settings"
+msgstr "show/change settings"
+
+#: openalloy/presentation/cli/main.py:773
+msgid "KEY=VALUE"
+msgstr "KEY=VALUE"
+
+#: openalloy/presentation/cli/main.py:774
+msgid "change a setting"
+msgstr "change a setting"
+
+#: openalloy/presentation/cli/main.py:775
+msgid "show or choose the interface language"
+msgstr "show or choose the interface language"
+
+#: openalloy/presentation/cli/main.py:778
+msgid "open the graphical interface"
+msgstr "open the graphical interface"
+
+#: openalloy/presentation/cli/main.py:779
+msgid "run the service in the foreground"
+msgstr "run the service in the foreground"
+
+#: openalloy/presentation/cli/main.py:780
+msgid "installation and permission diagnostics"
+msgstr "installation and permission diagnostics"
+
+#: openalloy/presentation/cli/main.py:781
+msgid "print the udev rule"
+msgstr "print the udev rule"
+
+#: openalloy/presentation/cli/main.py:782
+msgid "control the systemd user service"
+msgstr "control the systemd user service"
+
+#: openalloy/presentation/cli/main.py:55
+msgid "Error"
+msgstr "Error"
+
+#: openalloy/presentation/cli/main.py:136 openalloy/presentation/gui/app.py:957
+msgid "(simulated)"
+msgstr "(simulated)"
+
+#: openalloy/presentation/cli/main.py:144
+msgid "detected from the LEDs"
+msgstr "detected from the LEDs"
+
+#: openalloy/presentation/cli/main.py:153
+msgid "Profile"
+msgstr "Profile"
+
+#: openalloy/presentation/cli/main.py:163
+msgid "fixed color on the keyboard (nothing streaming)"
+msgstr "fixed color on the keyboard (nothing streaming)"
+
+#: openalloy/presentation/cli/main.py:164
+msgid "fixed color on the keyboard (nothing streaming), applying..."
+msgstr "fixed color on the keyboard (nothing streaming), applying..."
+
+#: openalloy/presentation/cli/main.py:166
+msgid "the keyboard's own lighting (onboard memory)"
+msgstr "the keyboard's own lighting (onboard memory)"
+
+#: openalloy/presentation/cli/main.py:228
+msgid "Applied"
+msgstr "Applied"
+
+#: openalloy/presentation/cli/main.py:232
+msgid ""
+"the service is not running; the live effect stops when this command ends.\n"
+"  Start the service: openalloy service enable  (or write it to memory: openalloy onboard write 1)"
+msgstr ""
+"the service is not running; the live effect stops when this command ends.\n"
+"  Start the service: openalloy service enable  (or write it to memory: openalloy onboard write 1)"
+
+#: openalloy/presentation/cli/main.py:301
+msgid "give the profile: openalloy onboard write 1|2|3 [EFFECT]"
+msgstr "give the profile: openalloy onboard write 1|2|3 [EFFECT]"
+
+#: openalloy/presentation/cli/main.py:322
+msgid "verified"
+msgstr "verified"
+
+#: openalloy/presentation/cli/main.py:322
+msgid "MISMATCH"
+msgstr "MISMATCH"
+
+#: openalloy/presentation/cli/main.py:322
+msgid "kept"
+msgstr "kept"
+
+#: openalloy/presentation/cli/main.py:323
+#, python-brace-format
+msgid "{n} frame"
+msgid_plural "{n} frames"
+msgstr[0] "{n} frame"
+msgstr[1] "{n} frames"
+
+#: openalloy/presentation/cli/main.py:327
+msgid "The effect now runs on the keyboard itself, with no service, even on another computer."
+msgstr "The effect now runs on the keyboard itself, with no service, even on another computer."
+
+#: openalloy/presentation/cli/main.py:374
+msgid "invalid preset file (a JSON object is expected)"
+msgstr "invalid preset file (a JSON object is expected)"
+
+#: openalloy/presentation/cli/main.py:387
+msgid "Do the keys show exactly that?"
+msgstr "Do the keys show exactly that?"
+
+#: openalloy/presentation/cli/main.py:402
+msgid ""
+"Writing to memory stays blocked.\n"
+"  Run 'openalloy doctor', close OpenRGB and check the udev rule; send the output for analysis."
+msgstr ""
+"Writing to memory stays blocked.\n"
+"  Run 'openalloy doctor', close OpenRGB and check the udev rule; send the output for analysis."
+
+#: openalloy/presentation/cli/main.py:497
+msgid "no rw access"
+msgstr "no rw access"
+
+#: openalloy/presentation/cli/main.py:536
+msgid "Alloy Origins Core (0951:16e6 or 03f0:098f) not found"
+msgstr "Alloy Origins Core (0951:16e6 or 03f0:098f) not found"
+
+#: openalloy/presentation/cli/main.py:558
+msgid "GTK4/PyGObject unavailable (the window will not open; the CLI works)"
+msgstr "GTK4/PyGObject unavailable (the window will not open; the CLI works)"
+
+#: openalloy/presentation/cli/main.py:572
+msgid "Writing to memory blocked until live RGB is confirmed (openalloy test-rgb)"
+msgstr "Writing to memory blocked until live RGB is confirmed (openalloy test-rgb)"
+
+#: openalloy/presentation/cli/main.py:591
+msgid "LEDs handed back to the keyboard."
+msgstr "LEDs handed back to the keyboard."
+
+#: openalloy/presentation/cli/main.py:603 openalloy/presentation/cli/main.py:653
+msgid "give a color (e.g. openalloy hold '#ff0000') or --preset NAME"
+msgstr "give a color (e.g. openalloy hold '#ff0000') or --preset NAME"
+
+#: openalloy/presentation/cli/main.py:677
+msgid ""
+"which goes back to its stored profile within a few seconds.\n"
+"  For a fixed color with no software on it, use: openalloy onboard write 1 static -c COLOR"
+msgstr ""
+"which goes back to its stored profile within a few seconds.\n"
+"  For a fixed color with no software on it, use: openalloy onboard write 1 static -c COLOR"
+
+#: openalloy/presentation/cli/main.py:717
+msgid "NAME=VALUE"
+msgstr "NAME=VALUE"
+
+#: openalloy/presentation/cli/main.py:718
+msgid "effect parameter"
+msgstr "effect parameter"
+
+#: openalloy/presentation/cli/main.py:719
+msgid "shortcut for -p color="
+msgstr "shortcut for -p color="
+
+#: openalloy/presentation/cli/main.py:720
+msgid "shortcut for -p colors=  (e.g. red,#00ff00,blue)"
+msgstr "shortcut for -p colors=  (e.g. red,#00ff00,blue)"
+
+#: openalloy/presentation/cli/main.py:721
+msgid "shortcut for -p speed="
+msgstr "shortcut for -p speed="
+
+#: openalloy/presentation/cli/main.py:722
+msgid "shortcut for -p direction="
+msgstr "shortcut for -p direction="
+
+#: openalloy/presentation/cli/main.py:726
+msgid "keep the current per-key colors"
+msgstr "keep the current per-key colors"
+
+#: openalloy/presentation/cli/main.py:728
+msgid "key-press reaction layer on top of the effect (live)"
+msgstr "key-press reaction layer on top of the effect (live)"
+
+#: openalloy/presentation/cli/main.py:729
+msgid "reaction color (or 'rainbow')"
+msgstr "reaction color (or 'rainbow')"
+
+#: openalloy/presentation/cli/main.py:139
+#, python-brace-format
+msgid "set manually; the keyboard reports {layout}"
+msgstr "set manually; the keyboard reports {layout}"
+
+#: openalloy/presentation/cli/main.py:152
+msgid "(software)"
+msgstr "(software)"
+
+#: openalloy/presentation/cli/main.py:158 openalloy/presentation/gui/app.py:1117
+msgid "disconnected"
+msgstr "disconnected"
+
+#: openalloy/presentation/cli/main.py:174
+#, python-brace-format
+msgid "{n} with a custom color"
+msgid_plural "{n} with a custom color"
+msgstr[0] "{n} with a custom color"
+msgstr[1] "{n} with a custom color"
+
+#: openalloy/presentation/cli/main.py:189
+msgid "system sound"
+msgstr "system sound"
+
+#: openalloy/presentation/cli/main.py:241
+msgid "Keeping the effect running... Ctrl+C to quit."
+msgstr "Keeping the effect running... Ctrl+C to quit."
+
+#: openalloy/presentation/cli/main.py:254
+msgid "Brightness: unknown (the keyboard did not report it)"
+msgstr "Brightness: unknown (the keyboard did not report it)"
+
+#: openalloy/presentation/cli/main.py:262 openalloy/presentation/cli/main.py:153
+#, python-brace-format
+msgid "Brightness: {level}/255"
+msgstr "Brightness: {level}/255"
+
+#: openalloy/presentation/cli/main.py:272
+#, python-brace-format
+msgid "Active profile: {profile} (onboard memory mode)"
+msgstr "Active profile: {profile} (onboard memory mode)"
+
+#: openalloy/presentation/cli/main.py:313
+msgid ""
+"The current content of that profile will be replaced. Sequence validated on\n"
+"  firmware 21.08; use at your own risk (see the README)."
+msgstr ""
+"The current content of that profile will be replaced. Sequence validated on\n"
+"  firmware 21.08; use at your own risk (see the README)."
+
+#: openalloy/presentation/cli/main.py:315
+msgid "Continue?"
+msgstr "Continue?"
+
+#: openalloy/presentation/cli/main.py:316
+msgid "cancelled"
+msgstr "cancelled"
+
+#: openalloy/presentation/cli/main.py:349
+msgid "Preset applied"
+msgstr "Preset applied"
+
+#: openalloy/presentation/cli/main.py:355
+#, python-brace-format
+msgid "Saved as {name}"
+msgstr "Saved as {name}"
+
+#: openalloy/presentation/cli/main.py:369
+#, python-brace-format
+msgid "Exported to {file}"
+msgstr "Exported to {file}"
+
+#: openalloy/presentation/cli/main.py:377
+#, python-brace-format
+msgid "Imported as {name}"
+msgstr "Imported as {name}"
+
+#: openalloy/presentation/cli/main.py:383
+msgid "Live RGB test"
+msgstr "Live RGB test"
+
+#: openalloy/presentation/cli/main.py:384
+#, python-brace-format
+msgid "Expected: {pattern}"
+msgstr "Expected: {pattern}"
+
+#: openalloy/presentation/cli/main.py:448
+#, python-brace-format
+msgid "Language: {name}"
+msgstr "Language: {name}"
+
+#: openalloy/presentation/cli/main.py:501
+msgid "vendor control"
+msgstr "vendor control"
+
+#: openalloy/presentation/cli/main.py:503
+msgid "keys/media"
+msgstr "keys/media"
+
+#: openalloy/presentation/cli/main.py:512
+#, python-brace-format
+msgid "Keyboard found: {usb} ({interfaces})"
+msgstr "Keyboard found: {usb} ({interfaces})"
+
+#: openalloy/presentation/cli/main.py:539
+#, python-brace-format
+msgid "udev rule in {path}"
+msgstr "udev rule in {path}"
+
+#: openalloy/presentation/cli/main.py:542
+#, python-brace-format
+msgid "Service running at {path}"
+msgstr "Service running at {path}"
+
+#: openalloy/presentation/cli/main.py:567
+#, python-brace-format
+msgid "Writing to memory unlocked by the {variable} variable"
+msgstr "Writing to memory unlocked by the {variable} variable"
+
+#: openalloy/presentation/cli/main.py:616
+msgid "it stays on the keyboard with nothing streaming and is re-applied when the keyboard is replugged or the PC wakes up."
+msgstr "it stays on the keyboard with nothing streaming and is re-applied when the keyboard is replugged or the PC wakes up."
+
+#: openalloy/presentation/cli/main.py:682
+#, python-brace-format
+msgid "(simulated) host control kept: {kept}"
+msgstr "(simulated) host control kept: {kept}"
+
+#: openalloy/presentation/cli/main.py:684
+msgid "Color applied and kept"
+msgstr "Color applied and kept"
+
+#: openalloy/presentation/cli/main.py:697
+#, python-brace-format
+msgid "interface language for this command: {codes}"
+msgstr "interface language for this command: {codes}"
+
+#: openalloy/presentation/cli/main.py:714
+msgid "effect id (see 'openalloy effects')"
+msgstr "effect id (see 'openalloy effects')"
+
+#: openalloy/presentation/cli/main.py:716
+msgid "effect (default: the current one)"
+msgstr "effect (default: the current one)"
+
+#: openalloy/presentation/cli/main.py:62
+#, python-brace-format
+msgid "invalid parameter {item!r}; use name=value"
+msgstr "invalid parameter {item!r}; use name=value"
+
+#: openalloy/presentation/cli/main.py:74
+#, python-brace-format
+msgid "invalid --key {item!r}; use key=color"
+msgstr "invalid --key {item!r}; use key=color"
+
+#: openalloy/presentation/cli/main.py:134
+#, python-brace-format
+msgid "backend: {kind}"
+msgstr "backend: {kind}"
+
+#: openalloy/presentation/cli/main.py:142
+#, python-brace-format
+msgid "byte 0x{value:02x}"
+msgstr "byte 0x{value:02x}"
+
+#: openalloy/presentation/cli/main.py:145
+#, python-brace-format
+msgid "Layout: {layout} ({origin})"
+msgstr "Layout: {layout} ({origin})"
+
+#: openalloy/presentation/cli/main.py:190
+msgid "live mode only"
+msgstr "live mode only"
+
+#: openalloy/presentation/cli/main.py:231 openalloy/presentation/cli/main.py:661 openalloy/presentation/cli/main.py:835
+msgid "Warning"
+msgstr "Warning"
+
+#: openalloy/presentation/cli/main.py:268
+#, python-brace-format
+msgid "Active profile: {profile}"
+msgstr "Active profile: {profile}"
+
+#: openalloy/presentation/cli/main.py:295
+msgid "The base animation cannot be read back (the firmware has no read for 0xA5)."
+msgstr "The base animation cannot be read back (the firmware has no read for 0xA5)."
+
+#: openalloy/presentation/cli/main.py:333
+#, python-brace-format
+msgid "give the name: openalloy preset {action} NAME FILE"
+msgstr "give the name: openalloy preset {action} NAME FILE"
+
+#: openalloy/presentation/cli/main.py:335
+#, python-brace-format
+msgid "give the name: openalloy preset {action} NAME"
+msgstr "give the name: openalloy preset {action} NAME"
+
+#: openalloy/presentation/cli/main.py:343
+msgid "built-in"
+msgstr "built-in"
+
+#: openalloy/presentation/cli/main.py:398
+msgid "Confirmed."
+msgstr "Confirmed."
+
+#: openalloy/presentation/cli/main.py:398
+#, python-brace-format
+msgid "Writing to memory: {state} ({reason})."
+msgstr "Writing to memory: {state} ({reason})."
+
+#: openalloy/presentation/cli/main.py:401
+msgid "Live RGB did not work on this keyboard."
+msgstr "Live RGB did not work on this keyboard."
+
+#: openalloy/presentation/cli/main.py:441 openalloy/presentation/cli/main.py:835
+#, python-brace-format
+msgid "unknown language {code!r}; available: {codes}"
+msgstr "unknown language {code!r}; available: {codes}"
+
+#: openalloy/presentation/cli/main.py:486
+msgid "OK"
+msgstr "OK"
+
+#: openalloy/presentation/cli/main.py:486
+msgid "ERROR"
+msgstr "ERROR"
+
+#: openalloy/presentation/cli/main.py:487
+msgid "WARNING"
+msgstr "WARNING"
+
+#: openalloy/presentation/cli/main.py:490
+#, python-brace-format
+msgid "OpenAlloy {version} diagnostics"
+msgstr "OpenAlloy {version} diagnostics"
+
+#: openalloy/presentation/cli/main.py:523
+#, python-brace-format
+msgid "Read/write permission on {nodes}"
+msgstr "Read/write permission on {nodes}"
+
+#: openalloy/presentation/cli/main.py:527
+#, python-brace-format
+msgid "No permission on {nodes}. Install the rule: {command} and replug the keyboard"
+msgstr "No permission on {nodes}. Install the rule: {command} and replug the keyboard"
+
+#: openalloy/presentation/cli/main.py:534
+#, python-brace-format
+msgid "Alloy Origins Core (0951:16e6 or 03f0:098f) not found; other HyperX: {devices}"
+msgstr "Alloy Origins Core (0951:16e6 or 03f0:098f) not found; other HyperX: {devices}"
+
+#: openalloy/presentation/cli/main.py:562
+#, python-brace-format
+msgid "{program} is running and may fight over the keyboard"
+msgstr "{program} is running and may fight over the keyboard"
+
+#: openalloy/presentation/cli/main.py:569
+#, python-brace-format
+msgid "Writing to memory unlocked for: {devices}"
+msgstr "Writing to memory unlocked for: {devices}"
+
+#: openalloy/presentation/cli/main.py:620
+msgid "the service keeps the color by sending it continuously."
+msgstr "the service keeps the color by sending it continuously."
+
+#: openalloy/presentation/cli/main.py:662
+#, python-brace-format
+msgid "'{effect}' is animated; with nothing running it stays on its first frame."
+msgstr "'{effect}' is animated; with nothing running it stays on its first frame."
+
+#: openalloy/presentation/cli/main.py:676 openalloy/presentation/cli/main.py:619
+msgid "This keyboard uses the vendor channel"
+msgstr "This keyboard uses the vendor channel"
+
+#: openalloy/presentation/cli/main.py:683
+msgid "yes"
+msgstr "yes"
+
+#: openalloy/presentation/cli/main.py:683
+msgid "no"
+msgstr "no"
+
+#: openalloy/presentation/cli/main.py:724
+#, python-brace-format
+msgid "fixed color per key; accepts a name, an index or a group ({groups})"
+msgstr "fixed color per key; accepts a name, an index or a group ({groups})"
+
+#: openalloy/presentation/cli/main.py:81
+#, python-brace-format
+msgid "unknown key: {key!r}"
+msgstr "unknown key: {key!r}"
+
+#: openalloy/presentation/cli/main.py:256
+#, python-brace-format
+msgid "Brightness: {level}/255 ({percent})"
+msgstr "Brightness: {level}/255 ({percent})"
+
+#: openalloy/presentation/cli/main.py:289
+#, python-brace-format
+msgid "Profile {profile} - key-press layer: {colors}"
+msgstr "Profile {profile} - key-press layer: {colors}"
+
+#: openalloy/presentation/cli/main.py:615
+msgid "Color fixed by the service"
+msgstr "Color fixed by the service"
+
+#: openalloy/presentation/cli/main.py:325
+#, python-brace-format
+msgid "{effect}, {frames}; key-press layer {mode} ({check})."
+msgstr "{effect}, {frames}; key-press layer {mode} ({check})."
+
+#: openalloy/presentation/cli/main.py:622
+msgid "Color saved"
+msgstr "Color saved"
+
+#: openalloy/presentation/cli/main.py:623
+#, python-brace-format
+msgid "but the keyboard has not confirmed it yet: {reason}. The service applies it as soon as it can."
+msgstr "but the keyboard has not confirmed it yet: {reason}. The service applies it as soon as it can."
+
+#: openalloy/presentation/cli/main.py:119
+msgid "y/N"
+msgstr "y/N"
+
+#: openalloy/presentation/cli/main.py:311
+#, python-brace-format
+msgid "This writes to the keyboard's flash memory (profile {profile})."
+msgstr "This writes to the keyboard's flash memory (profile {profile})."
+
+#: openalloy/presentation/cli/main.py:625 openalloy/presentation/gui/app.py:1128
+msgid "waiting for the keyboard"
+msgstr "waiting for the keyboard"
+
+#: openalloy/presentation/cli/main.py:324
+#, python-brace-format
+msgid "Profile {profile} written"
+msgstr "Profile {profile} written"
+
+#: openalloy/presentation/daemon/main.py:33
+msgid "OpenAlloy service"
+msgstr "OpenAlloy service"
+
+#: openalloy/presentation/daemon/main.py:35
+msgid "use a simulated keyboard (Kingston, fw 21.08)"
+msgstr "use a simulated keyboard (Kingston, fw 21.08)"
+
+#: openalloy/presentation/daemon/main.py:40
+msgid "socket path (default: $XDG_RUNTIME_DIR)"
+msgstr "socket path (default: $XDG_RUNTIME_DIR)"
+
+#: openalloy/presentation/gui/app.py:109
+msgid "HID LampArray (Dynamic Lighting)"
+msgstr "HID LampArray (Dynamic Lighting)"
+
+#: openalloy/presentation/gui/app.py:110 openalloy/presentation/gui/app.py:111
+msgid "vendor channel"
+msgstr "vendor channel"
+
+#: openalloy/presentation/gui/app.py:111
+msgid "LampArray"
+msgstr "LampArray"
+
+#: openalloy/presentation/gui/app.py:112
+msgid "WASD"
+msgstr "WASD"
+
+#: openalloy/presentation/gui/app.py:112
+msgid "Arrows"
+msgstr "Arrows"
+
+#: openalloy/presentation/gui/app.py:112
+msgid "Letters"
+msgstr "Letters"
+
+#: openalloy/presentation/gui/app.py:113
+msgid "Numbers"
+msgstr "Numbers"
+
+#: openalloy/presentation/gui/app.py:113
+msgid "F1–F12"
+msgstr "F1–F12"
+
+#: openalloy/presentation/gui/app.py:114
+msgid "Modifiers"
+msgstr "Modifiers"
+
+#: openalloy/presentation/gui/app.py:114
+msgid "Navigation"
+msgstr "Navigation"
+
+#: openalloy/presentation/gui/app.py:115
+msgid "All"
+msgstr "All"
+
+#: openalloy/presentation/gui/app.py:115
+msgctxt "keys"
+msgid "None"
+msgstr "None"
+
+#: openalloy/presentation/gui/app.py:44
+msgid "Error: GTK4/PyGObject not found. Install python3-gi, python3-gi-cairo and gir1.2-gtk-4.0 (Debian/Ubuntu/Sparky)."
+msgstr "Error: GTK4/PyGObject not found. Install python3-gi, python3-gi-cairo and gir1.2-gtk-4.0 (Debian/Ubuntu/Sparky)."
+
+#: openalloy/presentation/gui/app.py:255
+msgid "Lighting"
+msgstr "Lighting"
+
+#: openalloy/presentation/gui/app.py:257
+msgid "Logs"
+msgstr "Logs"
+
+#: openalloy/presentation/gui/app.py:286
+msgid "connecting…"
+msgstr "connecting…"
+
+#: openalloy/presentation/gui/app.py:309
+msgid "On: clicking/dragging paints directly with the color next to it"
+msgstr "On: clicking/dragging paints directly with the color next to it"
+
+#: openalloy/presentation/gui/app.py:327 openalloy/presentation/gui/app.py:725
+msgid "No key selected"
+msgstr "No key selected"
+
+#: openalloy/presentation/gui/app.py:370
+msgid "Live mode: OpenAlloy keeps the effect running (needed for animated effects)."
+msgstr "Live mode: OpenAlloy keeps the effect running (needed for animated effects)."
+
+#: openalloy/presentation/gui/app.py:374
+msgid "Applies once and leaves the color on the keyboard, with nothing streaming. Animated effects stay still."
+msgstr "Applies once and leaves the color on the keyboard, with nothing streaming. Animated effects stay still."
+
+#: openalloy/presentation/gui/app.py:400
+msgid "Shows a known pattern to confirm the keyboard accepts the commands"
+msgstr "Shows a known pattern to confirm the keyboard accepts the commands"
+
+#: openalloy/presentation/gui/app.py:404
+msgid "Stops OpenAlloy and returns to the keyboard's own lighting"
+msgstr "Stops OpenAlloy and returns to the keyboard's own lighting"
+
+#: openalloy/presentation/gui/app.py:442
+msgid "Keyboard memory"
+msgstr "Keyboard memory"
+
+#: openalloy/presentation/gui/app.py:478
+msgid "Converts screen colors for the LEDs. Without it, shades like the color picker's red look pink on the keyboard."
+msgstr "Converts screen colors for the LEDs. Without it, shades like the color picker's red look pink on the keyboard."
+
+#: openalloy/presentation/gui/app.py:503
+msgid "The service keeps animated effects running and re-applies the fixed color when the PC starts, the keyboard is replugged or the PC wakes up."
+msgstr "The service keeps animated effects running and re-applies the fixed color when the PC starts, the keyboard is replugged or the PC wakes up."
+
+#: openalloy/presentation/gui/app.py:796
+msgid "Preset loaded: click Apply or Fix on keyboard."
+msgstr "Preset loaded: click Apply or Fix on keyboard."
+
+#: openalloy/presentation/gui/app.py:896
+msgid "The current content of that profile in the keyboard memory will be replaced."
+msgstr "The current content of that profile in the keyboard memory will be replaced."
+
+#: openalloy/presentation/gui/app.py:1129
+msgid "Keyboard not connected"
+msgstr "Keyboard not connected"
+
+#: openalloy/presentation/gui/app.py:305
+msgid "Click or drag on the keyboard to select (Ctrl adds). Per-key colors sit on top of any effect."
+msgstr "Click or drag on the keyboard to select (Ctrl adds). Per-key colors sit on top of any effect."
+
+#: openalloy/presentation/gui/app.py:308
+msgid "Brush"
+msgstr "Brush"
+
+#: openalloy/presentation/gui/app.py:313
+msgid "Paint selection"
+msgstr "Paint selection"
+
+#: openalloy/presentation/gui/app.py:315
+msgid "Remove color"
+msgstr "Remove color"
+
+#: openalloy/presentation/gui/app.py:317
+msgid "Clear all"
+msgstr "Clear all"
+
+#: openalloy/presentation/gui/app.py:325
+msgid "Select"
+msgstr "Select"
+
+#: openalloy/presentation/gui/app.py:333
+msgid "Per-key colors"
+msgstr "Per-key colors"
+
+#: openalloy/presentation/gui/app.py:336
+msgid "The pressed key lights up or sends out a wave. Live mode only."
+msgstr "The pressed key lights up or sends out a wave. Live mode only."
+
+#: openalloy/presentation/gui/app.py:344
+msgid "Load"
+msgstr "Load"
+
+#: openalloy/presentation/gui/app.py:346
+msgid "Save as…"
+msgstr "Save as…"
+
+#: openalloy/presentation/gui/app.py:349
+msgid "Preset name"
+msgstr "Preset name"
+
+#: openalloy/presentation/gui/app.py:350
+msgid "Save"
+msgstr "Save"
+
+#: openalloy/presentation/gui/app.py:357
+msgid "Delete"
+msgstr "Delete"
+
+#: openalloy/presentation/gui/app.py:361
+msgid "Presets"
+msgstr "Presets"
+
+#: openalloy/presentation/gui/app.py:368 openalloy/presentation/gui/app.py:602
+msgid "Apply"
+msgstr "Apply"
+
+#: openalloy/presentation/gui/app.py:373
+msgid "Fix on keyboard"
+msgstr "Fix on keyboard"
+
+#: openalloy/presentation/gui/app.py:377
+msgid "LEDs off"
+msgstr "LEDs off"
+
+#: openalloy/presentation/gui/app.py:397
+msgid "Brightness (%)"
+msgstr "Brightness (%)"
+
+#: openalloy/presentation/gui/app.py:399
+msgid "Test RGB"
+msgstr "Test RGB"
+
+#: openalloy/presentation/gui/app.py:403
+msgid "Give lighting back to the keyboard"
+msgstr "Give lighting back to the keyboard"
+
+#: openalloy/presentation/gui/app.py:409
+msgid "Hardware"
+msgstr "Hardware"
+
+#: openalloy/presentation/gui/app.py:417
+msgid "Activate"
+msgstr "Activate"
+
+#: openalloy/presentation/gui/app.py:419
+msgid "Read"
+msgstr "Read"
+
+#: openalloy/presentation/gui/app.py:421
+msgid "Write current effect"
+msgstr "Write current effect"
+
+#: openalloy/presentation/gui/app.py:430
+msgid "On key press: same as the effect"
+msgstr "On key press: same as the effect"
+
+#: openalloy/presentation/gui/app.py:431
+msgid "On key press: turn off"
+msgstr "On key press: turn off"
+
+#: openalloy/presentation/gui/app.py:432
+msgid "On key press: keep"
+msgstr "On key press: keep"
+
+#: openalloy/presentation/gui/app.py:433
+msgid "On key press: color"
+msgstr "On key press: color"
+
+#: openalloy/presentation/gui/app.py:455
+msgid "Information"
+msgstr "Information"
+
+#: openalloy/presentation/gui/app.py:460
+msgid "Automatic"
+msgstr "Automatic"
+
+#: openalloy/presentation/gui/app.py:460
+msgid "ANSI (US)"
+msgstr "ANSI (US)"
+
+#: openalloy/presentation/gui/app.py:460
+msgid "ABNT2 (Brazil)"
+msgstr "ABNT2 (Brazil)"
+
+#: openalloy/presentation/gui/app.py:460
+msgid "ISO (Europe)"
+msgstr "ISO (Europe)"
+
+#: openalloy/presentation/gui/app.py:462 openalloy/presentation/gui/app.py:449
+msgid "Layout"
+msgstr "Layout"
+
+#: openalloy/presentation/gui/app.py:466
+msgid "Language"
+msgstr "Language"
+
+#: openalloy/presentation/gui/app.py:469
+msgid "Frames/s (live)"
+msgstr "Frames/s (live)"
+
+#: openalloy/presentation/gui/app.py:472
+msgid "Read keys (reaction)"
+msgstr "Read keys (reaction)"
+
+#: openalloy/presentation/gui/app.py:475
+msgid "Restore brightness"
+msgstr "Restore brightness"
+
+#: openalloy/presentation/gui/app.py:481
+msgid "Correct colors for LEDs"
+msgstr "Correct colors for LEDs"
+
+#: openalloy/presentation/gui/app.py:485
+msgid "Show the keyboard profile"
+msgstr "Show the keyboard profile"
+
+#: openalloy/presentation/gui/app.py:485
+msgid "Switch to the bound preset"
+msgstr "Switch to the bound preset"
+
+#: openalloy/presentation/gui/app.py:485
+msgid "Ignore"
+msgstr "Ignore"
+
+#: openalloy/presentation/gui/app.py:487
+msgid "Fn+1/2/3 keys"
+msgstr "Fn+1/2/3 keys"
+
+#: openalloy/presentation/gui/app.py:497
+msgid "Start the service with the system"
+msgstr "Start the service with the system"
+
+#: openalloy/presentation/gui/app.py:498
+msgid "Stop the service"
+msgstr "Stop the service"
+
+#: openalloy/presentation/gui/app.py:507
+msgid "Settings"
+msgstr "Settings"
+
+#: openalloy/presentation/gui/app.py:602
+msgid "Already applied"
+msgstr "Already applied"
+
+#: openalloy/presentation/gui/app.py:666
+msgid "LEDs turned off. You can close the window."
+msgstr "LEDs turned off. You can close the window."
+
+#: openalloy/presentation/gui/app.py:667
+msgid "Color fixed on the keyboard. You can close the window."
+msgstr "Color fixed on the keyboard. You can close the window."
+
+#: openalloy/presentation/gui/app.py:698
+msgid "Select keys on the keyboard drawing first."
+msgstr "Select keys on the keyboard drawing first."
+
+#: openalloy/presentation/gui/app.py:782
+msgid "Select a valid preset."
+msgstr "Select a valid preset."
+
+#: openalloy/presentation/gui/app.py:815
+msgid "Built-in presets cannot be deleted."
+msgstr "Built-in presets cannot be deleted."
+
+#: openalloy/presentation/gui/app.py:844
+msgid "Look at the keyboard"
+msgstr "Look at the keyboard"
+
+#: openalloy/presentation/gui/app.py:898
+msgid "Cancel"
+msgstr "Cancel"
+
+#: openalloy/presentation/gui/app.py:898
+msgid "Write"
+msgstr "Write"
+
+#: openalloy/presentation/gui/app.py:1034
+msgid "systemctl not found."
+msgstr "systemctl not found."
+
+#: openalloy/presentation/gui/app.py:1037
+msgid "Unavailable in simulated mode."
+msgstr "Unavailable in simulated mode."
+
+#: openalloy/presentation/gui/app.py:1040
+msgid "Starting the service…"
+msgstr "Starting the service…"
+
+#: openalloy/presentation/gui/app.py:1041
+msgid "Stopping the service…"
+msgstr "Stopping the service…"
+
+#: openalloy/presentation/gui/app.py:1069
+msgid "Service stopped. This window controls the keyboard while it is open."
+msgstr "Service stopped. This window controls the keyboard while it is open."
+
+#: openalloy/presentation/gui/app.py:328
+msgid "Group:"
+msgstr "Group:"
+
+#: openalloy/presentation/gui/app.py:435
+msgid "Frames:"
+msgstr "Frames:"
+
+#: openalloy/presentation/gui/app.py:448
+msgid "Model"
+msgstr "Model"
+
+#: openalloy/presentation/gui/app.py:448
+msgid "USB"
+msgstr "USB"
+
+#: openalloy/presentation/gui/app.py:450
+msgid "Control"
+msgstr "Control"
+
+#: openalloy/presentation/gui/app.py:490 openalloy/presentation/gui/app.py:774
+msgctxt "preset"
+msgid "None"
+msgstr "None"
+
+#: openalloy/presentation/gui/app.py:645
+msgid "Applied live."
+msgstr "Applied live."
+
+#: openalloy/presentation/gui/app.py:646
+msgid "Applied live. It stays active while this window is open (or turn on the service in Keyboard → Settings)."
+msgstr "Applied live. It stays active while this window is open (or turn on the service in Keyboard → Settings)."
+
+#: openalloy/presentation/gui/app.py:669
+msgid "Animated effect: it stays on its first frame."
+msgstr "Animated effect: it stays on its first frame."
+
+#: openalloy/presentation/gui/app.py:847
+msgid "No"
+msgstr "No"
+
+#: openalloy/presentation/gui/app.py:847
+msgid "Yes"
+msgstr "Yes"
+
+#: openalloy/presentation/gui/app.py:866
+msgid "Live RGB confirmed."
+msgstr "Live RGB confirmed."
+
+#: openalloy/presentation/gui/app.py:867
+msgid "RGB did not work: run 'openalloy doctor' and send the output."
+msgstr "RGB did not work: run 'openalloy doctor' and send the output."
+
+#: openalloy/presentation/gui/app.py:894
+#, python-brace-format
+msgid "Write “{effect}” to profile {profile}?"
+msgstr "Write “{effect}” to profile {profile}?"
+
+#: openalloy/presentation/gui/app.py:1065
+msgid "The service did not answer; this window keeps controlling the keyboard. See the Logs tab or 'openalloy doctor'."
+msgstr "The service did not answer; this window keeps controlling the keyboard. See the Logs tab or 'openalloy doctor'."
+
+#: openalloy/presentation/gui/app.py:1139 openalloy/presentation/gui/app.py:1138
+msgid "The keyboard's own lighting"
+msgstr "The keyboard's own lighting"
+
+#: openalloy/presentation/gui/app.py:416
+#, python-brace-format
+msgid "Profile {n}"
+msgstr "Profile {n}"
+
+#: openalloy/presentation/gui/app.py:554
+#, python-brace-format
+msgid "Error while starting: {error}"
+msgstr "Error while starting: {error}"
+
+#: openalloy/presentation/gui/app.py:559
+msgid "(sound)"
+msgstr "(sound)"
+
+#: openalloy/presentation/gui/app.py:726
+#, python-brace-format
+msgid "{n} key selected"
+msgid_plural "{n} keys selected"
+msgstr[0] "{n} key selected"
+msgstr[1] "{n} keys selected"
+
+#: openalloy/presentation/gui/app.py:768
+msgid "(none)"
+msgstr "(none)"
+
+#: openalloy/presentation/gui/app.py:845
+#, python-brace-format
+msgid ""
+"Expected: {pattern}\n"
+"\n"
+"Does it show that?"
+msgstr ""
+"Expected: {pattern}\n"
+"\n"
+"Does it show that?"
+
+#: openalloy/presentation/gui/app.py:865 openalloy/presentation/gui/app.py:641 openalloy/presentation/gui/app.py:659 openalloy/presentation/gui/app.py:678 openalloy/presentation/gui/app.py:1017
+#, python-brace-format
+msgid "Error: {error}"
+msgstr "Error: {error}"
+
+#: openalloy/presentation/gui/app.py:887
+#, python-brace-format
+msgid "Profile {profile}, color on key press: {colors}"
+msgstr "Profile {profile}, color on key press: {colors}"
+
+#: openalloy/presentation/gui/app.py:940
+msgid "Writing unlocked."
+msgstr "Writing unlocked."
+
+#: openalloy/presentation/gui/app.py:956
+msgid "background service"
+msgstr "background service"
+
+#: openalloy/presentation/gui/app.py:956
+msgid "this window"
+msgstr "this window"
+
+#: openalloy/presentation/gui/app.py:1056
+msgid "Failed."
+msgstr "Failed."
+
+#: openalloy/presentation/gui/app.py:1092
+msgid "no answer"
+msgstr "no answer"
+
+#: openalloy/presentation/gui/app.py:1111
+msgid "simulated"
+msgstr "simulated"
+
+#: openalloy/presentation/gui/app.py:1112
+msgid "connected"
+msgstr "connected"
+
+#: openalloy/presentation/gui/app.py:1127
+#, python-brace-format
+msgid "Disconnected: {reason}"
+msgstr "Disconnected: {reason}"
+
+#: openalloy/presentation/gui/app.py:493
+#, python-brace-format
+msgid "Preset for Fn+{n}"
+msgstr "Preset for Fn+{n}"
+
+#: openalloy/presentation/gui/app.py:560
+msgid "(keys)"
+msgstr "(keys)"
+
+#: openalloy/presentation/gui/app.py:840
+#, python-brace-format
+msgid "Test not started: {error}"
+msgstr "Test not started: {error}"
+
+#: openalloy/presentation/gui/app.py:881
+#, python-brace-format
+msgid "Read error: {error}"
+msgstr "Read error: {error}"
+
+#: openalloy/presentation/gui/app.py:924
+#, python-brace-format
+msgid "Failed: {error}"
+msgstr "Failed: {error}"
+
+#: openalloy/presentation/gui/app.py:925
+#, python-brace-format
+msgid "Profile {profile} written ({n} frame)."
+msgid_plural "Profile {profile} written ({n} frames)."
+msgstr[0] "Profile {profile} written ({n} frame)."
+msgstr[1] "Profile {profile} written ({n} frames)."
+
+#: openalloy/presentation/gui/app.py:1061
+msgid "Service running: it keeps the lighting even with the window closed and starts with the system."
+msgstr "Service running: it keeps the lighting even with the window closed and starts with the system."
+
+#: openalloy/presentation/gui/app.py:1131
+#, python-brace-format
+msgid "Fixed on the keyboard: {effect} (nothing streaming)"
+msgstr "Fixed on the keyboard: {effect} (nothing streaming)"
+
+#: openalloy/presentation/gui/app.py:766
+msgid "(yours)"
+msgstr "(yours)"
+
+#: openalloy/presentation/gui/app.py:874
+#, python-brace-format
+msgid "Profile {profile} active on the keyboard."
+msgstr "Profile {profile} active on the keyboard."
+
+#: openalloy/presentation/gui/app.py:941
+#, python-brace-format
+msgid "Writing blocked: {reason}"
+msgstr "Writing blocked: {reason}"
+
+#: openalloy/presentation/gui/app.py:1135
+#, python-brace-format
+msgid "Live: {effect}"
+msgstr "Live: {effect}"
+
+#: openalloy/presentation/gui/app.py:808
+#, python-brace-format
+msgid "Preset “{name}” saved."
+msgstr "Preset “{name}” saved."
+
+#: openalloy/presentation/gui/app.py:1094
+#, python-brace-format
+msgid "The OpenAlloy service is not answering: {error}"
+msgstr "The OpenAlloy service is not answering: {error}"
+
+#: openalloy/presentation/gui/app.py:1096
+#, python-brace-format
+msgid "OpenAlloy is not answering: {error}"
+msgstr "OpenAlloy is not answering: {error}"
+
+#: openalloy/presentation/gui/app.py:1154
+#, python-brace-format
+msgid "Fn + {profile} pressed on the keyboard."
+msgstr "Fn + {profile} pressed on the keyboard."
+
+#: openalloy/presentation/gui/widgets.py:39
+msgid "Choose a color"
+msgstr "Choose a color"
+
+#: openalloy/presentation/gui/widgets.py:76
+msgid "Add color"
+msgstr "Add color"
+
+#: openalloy/presentation/gui/widgets.py:79
+msgid "Remove the last color"
+msgstr "Remove the last color"
+
+#: openalloy/presentation/gui/widgets.py:139
+msgid "This effect has no parameters."
+msgstr "This effect has no parameters."
+
+#: tools/hid_diagnostics.py:135
+msgid "No HyperX Alloy Origins Core found."
+msgstr "No HyperX Alloy Origins Core found."
+
+#: tools/hid_diagnostics.py:130
+msgid "(no driver)"
+msgstr "(no driver)"
+
+#: tools/hid_diagnostics.py:114
+msgid "usage pages      : "
+msgstr "usage pages      : "
+
+#: tools/hid_diagnostics.py:120
+#, python-brace-format
+msgid "descriptor ({size} bytes): {data}"
+msgstr "descriptor ({size} bytes): {data}"
+
+#: tools/hid_diagnostics.py:127
+#, python-brace-format
+msgid "product='{product}'  interfaces={count}"
+msgstr "product='{product}'  interfaces={count}"
+
+#: tools/hid_diagnostics.py:131
+#, python-brace-format
+msgid "interface {number}: class {cls} driver={driver}  endpoints: {endpoints}"
+msgstr "interface {number}: class {cls} driver={driver}  endpoints: {endpoints}"
+
+#: tools/hid_diagnostics.py:114
+msgid "(vendor)"
+msgstr "(vendor)"
+
+#: install.sh:43
+msgid "Usage: ./install.sh [options]"
+msgstr "Usage: ./install.sh [options]"
+
+#: install.sh:44
+msgid "installer and interface language (en, pt_BR)"
+msgstr "installer and interface language (en, pt_BR)"
+
+#: install.sh:45
+msgid "also allow reading the keyboard's keys (Reactive/Ripple effects)"
+msgstr "also allow reading the keyboard's keys (Reactive/Ripple effects)"
+
+#: install.sh:46
+msgid "do not install system packages"
+msgstr "do not install system packages"
+
+#: install.sh:47
+msgid "do not install the udev rule"
+msgstr "do not install the udev rule"
+
+#: install.sh:48
+msgid "do not install/enable the systemd user service"
+msgstr "do not install/enable the systemd user service"
+
+#: install.sh:49
+msgid "do not add a menu shortcut"
+msgstr "do not add a menu shortcut"
+
+#: install.sh:50
+msgid "editable install (pipx install -e)"
+msgstr "editable install (pipx install -e)"
+
+#: install.sh:51
+msgid "this help"
+msgstr "this help"
+
+#: install.sh:67
+#, python-format, sh-format
+msgid "unknown option: %s"
+msgstr "unknown option: %s"
+
+#: install.sh:77
+msgid "Run as your normal user (the script asks for sudo only when needed)."
+msgstr "Run as your normal user (the script asks for sudo only when needed)."
+
+#: install.sh:86
+msgid "sudo/doas not found"
+msgstr "sudo/doas not found"
+
+#: install.sh:93
+msgid "Installing system dependencies..."
+msgstr "Installing system dependencies..."
+
+#: install.sh:106
+msgid "Unknown package manager. Install manually: Python >= 3.10, pipx, PyGObject, pycairo (gi-cairo) and GTK 4."
+msgstr "Unknown package manager. Install manually: Python >= 3.10, pipx, PyGObject, pycairo (gi-cairo) and GTK 4."
+
+#: install.sh:108
+msgid "Dependencies installed"
+msgstr "Dependencies installed"
+
+#: install.sh:113
+msgid "pipx not found. Install it (or run without --no-deps)."
+msgstr "pipx not found. Install it (or run without --no-deps)."
+
+#: install.sh:116
+msgid "Installing OpenAlloy with pipx..."
+msgstr "Installing OpenAlloy with pipx..."
+
+#: install.sh:123
+#, python-format, sh-format
+msgid "Installed in %s"
+msgstr "Installed in %s"
+
+#: install.sh:130
+#, python-format, sh-format
+msgid "Language saved: %s"
+msgstr "Language saved: %s"
+
+#: install.sh:132
+#, python-format, sh-format
+msgid "Unknown language %s; keeping the current one"
+msgstr "Unknown language %s; keeping the current one"
+
+#: install.sh:139
+msgid "Installing the udev rule (access to the keyboard lighting interfaces only)..."
+msgstr "Installing the udev rule (access to the keyboard lighting interfaces only)..."
+
+#: install.sh:143
+msgid "Rule for reactive effects installed"
+msgstr "Rule for reactive effects installed"
+
+#: install.sh:148
+msgid "Found /etc/udev/rules.d/60-hxoctkl.rules (it opens every interface); the OpenAlloy rule is stricter. Remove the old one if you do not use hxoctkl."
+msgstr "Found /etc/udev/rules.d/60-hxoctkl.rules (it opens every interface); the OpenAlloy rule is stricter. Remove the old one if you do not use hxoctkl."
+
+#: install.sh:157
+#, python-format, sh-format
+msgid "Sleep hook installed in %s"
+msgstr "Sleep hook installed in %s"
+
+#: install.sh:160
+msgid "udev rule active (if the keyboard was already plugged in and is not detected, replug it)"
+msgstr "udev rule active (if the keyboard was already plugged in and is not detected, replug it)"
+
+#: install.sh:173
+msgid "User service running (new version loaded): systemctl --user status openalloy"
+msgstr "User service running (new version loaded): systemctl --user status openalloy"
+
+#: install.sh:175
+msgid "systemd user session unavailable; run 'openalloyd' by hand or from autostart."
+msgstr "systemd user session unavailable; run 'openalloyd' by hand or from autostart."
+
+#: install.sh:189
+msgid "'OpenAlloy' shortcut added to the application menu"
+msgstr "'OpenAlloy' shortcut added to the application menu"
+
+#: install.sh:197
+msgid "Manual pages installed: man openalloy, man openalloyd"
+msgstr "Manual pages installed: man openalloy, man openalloyd"
+
+#: install.sh:203
+msgid "OpenRGB is running and may fight over the keyboard. Close it or disable the 'HyperX Alloy Origins Core' device in it."
+msgstr "OpenRGB is running and may fight over the keyboard. Close it or disable the 'HyperX Alloy Origins Core' device in it."
+
+#: install.sh:208
+msgid "Linuity detected (microphone) - it can keep running, there is no conflict."
+msgstr "Linuity detected (microphone) - it can keep running, there is no conflict."
+
+#: install.sh:212
+msgid "Done! Open 'OpenAlloy' from the menu or run: openalloy gui"
+msgstr "Done! Open 'OpenAlloy' from the menu or run: openalloy gui"
+
+#: install.sh:213
+msgid "Diagnostics: openalloy doctor     Uninstall: ./uninstall.sh"
+msgstr "Diagnostics: openalloy doctor     Uninstall: ./uninstall.sh"
+
+#: uninstall.sh:48
+msgid "Settings and presets removed."
+msgstr "Settings and presets removed."
+
+#: uninstall.sh:50
+msgid "OpenAlloy removed. Profiles written to the keyboard memory stay in it."
+msgstr "OpenAlloy removed. Profiles written to the keyboard memory stay in it."
+
+#: openalloy/resources/presets/arco-iris.json
+msgctxt "preset"
+msgid "Rainbow wave"
+msgstr "Rainbow wave"
+
+#: openalloy/resources/presets/aurora.json
+msgctxt "preset"
+msgid "Aurora"
+msgstr "Aurora"
+
+#: openalloy/resources/presets/batida.json
+msgctxt "preset"
+msgid "Beat (sound)"
+msgstr "Beat (sound)"
+
+#: openalloy/resources/presets/ceu-estrelado.json
+msgctxt "preset"
+msgid "Starry sky"
+msgstr "Starry sky"
+
+#: openalloy/resources/presets/cobra.json
+msgctxt "preset"
+msgid "Snake"
+msgstr "Snake"
+
+#: openalloy/resources/presets/cyberpunk.json
+msgctxt "preset"
+msgid "Cyberpunk (wave + reaction)"
+msgstr "Cyberpunk (wave + reaction)"
+
+#: openalloy/resources/presets/discoteca.json
+msgctxt "preset"
+msgid "Disco (sound)"
+msgstr "Disco (sound)"
+
+#: openalloy/resources/presets/equalizador.json
+msgctxt "preset"
+msgid "Equalizer (sound)"
+msgstr "Equalizer (sound)"
+
+#: openalloy/resources/presets/gamer-wasd.json
+msgctxt "preset"
+msgid "Gamer (WASD + arrows)"
+msgstr "Gamer (WASD + arrows)"
+
+#: openalloy/resources/presets/hyperx-classico.json
+msgctxt "preset"
+msgid "HyperX classic"
+msgstr "HyperX classic"
+
+#: openalloy/resources/presets/lareira.json
+msgctxt "preset"
+msgid "Fireplace"
+msgstr "Fireplace"
+
+#: openalloy/resources/presets/lava.json
+msgctxt "preset"
+msgid "Lava"
+msgstr "Lava"
+
+#: openalloy/resources/presets/maquina-de-escrever.json
+msgctxt "preset"
+msgid "Typewriter"
+msgstr "Typewriter"
+
+#: openalloy/resources/presets/matrix.json
+msgctxt "preset"
+msgid "Matrix"
+msgstr "Matrix"
+
+#: openalloy/resources/presets/oceano.json
+msgctxt "preset"
+msgid "Ocean"
+msgstr "Ocean"
+
+#: openalloy/resources/presets/pastel.json
+msgctxt "preset"
+msgid "Pastel rainbow"
+msgstr "Pastel rainbow"
+
+#: openalloy/resources/presets/por-do-sol.json
+msgctxt "preset"
+msgid "Sunset"
+msgstr "Sunset"
+
+#: openalloy/resources/presets/reativo-ondas.json
+msgctxt "preset"
+msgid "Reactive ripple"
+msgstr "Reactive ripple"
+
+#: openalloy/resources/presets/respiracao-brasil.json
+msgctxt "preset"
+msgid "Green-and-yellow breathing"
+msgstr "Green-and-yellow breathing"
+
+#: openalloy/resources/openalloy.desktop.in:3
+msgctxt "desktop"
+msgid "OpenAlloy"
+msgstr "OpenAlloy"
+
+#: openalloy/resources/openalloy.desktop.in:4
+msgctxt "desktop"
+msgid "HyperX keyboard configurator"
+msgstr "HyperX keyboard configurator"
+
+#: openalloy/resources/openalloy.desktop.in:5
+msgctxt "desktop"
+msgid "RGB lighting and onboard memory for the HyperX Alloy Origins Core"
+msgstr "RGB lighting and onboard memory for the HyperX Alloy Origins Core"
+
+#: openalloy/resources/openalloy.desktop.in:10
+msgctxt "desktop"
+msgid "HyperX;Alloy;Origins;Core;RGB;keyboard;lighting;NGenuity;"
+msgstr "HyperX;Alloy;Origins;Core;RGB;keyboard;lighting;NGenuity;"

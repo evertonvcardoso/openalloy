@@ -1,0 +1,11 @@
+{
+  "name": "Lava",
+  "lighting": {
+    "effect": "fire",
+    "params": {
+      "speed": 25,
+      "height": 70
+    },
+    "keys": {}
+  }
+}

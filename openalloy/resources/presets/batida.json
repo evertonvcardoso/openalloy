@@ -1,0 +1,12 @@
+{
+  "name": "Beat (sound)",
+  "lighting": {
+    "effect": "soundpulse",
+    "params": {
+      "color": "#280050",
+      "peak": "#ff0078",
+      "sensitivity": 120
+    },
+    "keys": {}
+  }
+}

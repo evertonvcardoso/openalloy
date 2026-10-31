@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2026 Everton Vilhena Cardoso
+[Unit]
+Description=OpenAlloy - HyperX Alloy Origins Core lighting daemon
+Documentation=man:openalloyd(1) man:openalloy(1)
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/openalloyd
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,13 @@
+{
+  "name": "Matrix",
+  "lighting": {
+    "effect": "rain",
+    "params": {
+      "color": "#00ff55",
+      "background": "#000800",
+      "speed": 35,
+      "trail": 45
+    },
+    "keys": {}
+  }
+}

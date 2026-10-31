@@ -1,0 +1,393 @@
+.\" Manual page for openalloy(1).
+.\" Copyright (C) 2026 Everton Vilhena Cardoso
+.\" SPDX-License-Identifier: GPL-2.0-or-later
+.TH OPENALLOY 1 "October 2026" "OpenAlloy 1.6.0" "User Commands"
+.SH NAME
+openalloy \- configure the lighting of the HyperX Alloy Origins Core keyboard
+.SH SYNOPSIS
+.B openalloy
+.RI [ global-options ]
+.I command
+.RI [ arguments ]
+.br
+.B openalloy gui
+.br
+.B openalloy \-\-help
+|
+.B \-\-version
+.SH DESCRIPTION
+.B openalloy
+is a native Linux configurator for the HyperX Alloy Origins Core TKL keyboard
+(USB IDs 0951:16e6 and the HP version 03f0:098f) and an alternative to HyperX
+NGENUITY, which exists only for Windows.
+It sets per\-key RGB colors, runs animated, key\-reactive and sound\-reactive
+effects, keeps a fixed color without any program running, and, on firmware
+that allows it, writes effects to the three onboard profiles of the keyboard.
+.PP
+The keyboard is reached through
+.I /dev/hidraw
+nodes, either on the vendor channel (USB interface 2) or through the standard
+HID LampArray interface (USB interface 3, "Dynamic Lighting").
+The right one is chosen automatically; on the HP 03f0:098f with firmware 21.16
+only HID LampArray works.
+.PP
+When the user service
+.BR openalloyd (1)
+is running, every command is forwarded to it over a Unix socket and takes effect
+at once.
+Without the service, the command drives the keyboard by itself while it runs.
+.SH GLOBAL OPTIONS
+.TP
+.BR \-h ", " \-\-help
+Show help and exit.
+Every command also accepts
+.BR \-\-help .
+.TP
+.B \-\-version
+Show the version and exit.
+.TP
+.BI \-\-lang " CODE"
+Language of this command only:
+.B en
+(default) or
+.BR pt_BR .
+.TP
+.B \-\-json
+Print machine\-readable JSON (for
+.BR status ,
+.BR effects ", and others)."
+.TP
+.BR \-v ", " \-\-verbose
+More detailed log on standard error.
+.TP
+.B \-\-simulate
+Use a simulated keyboard (vendor channel, firmware 21.08).
+Nothing is sent to real hardware and onboard writes are not gated.
+.TP
+.B \-\-simulate\-hp
+Simulate the HP 03f0:098f with firmware 21.16 (vendor channel refused,
+HID LampArray only).
+.TP
+.BR \-\-sim\-layout " " ansi | abnt2 | iso
+Layout of the simulated keyboard (default
+.BR abnt2 ).
+.SH COMMANDS
+.SS Lighting
+.TP
+.B status
+Keyboard, driver, mode, effect and brightness.
+.TP
+.B effects
+List the effects with their parameters, defaults and ranges.
+.TP
+.BI apply " EFFECT"
+.RB [ \-p
+.IR NAME = VALUE ]...
+.RB [ \-c
+.IR COLOR ]
+.RB [ \-\-colors
+.IR LIST ]
+.RB [ \-s
+.IR SPEED ]
+.RB [ \-d
+.IR DIRECTION ]
+.RB [ \-k
+.IR KEY = COLOR ]...
+.RB [ \-\-keep\-keys ]
+.RB [ \-r " none" | flash | ripple ]
+.RB [ \-\-react\-color
+.IR COLOR ]
+.RB [ \-\-no\-save ]
+.br
+Apply an effect live.
+.B \-c
+and
+.BR \-\-colors ,
+.BR \-s " and " \-d
+are shortcuts for the
+.BR color ,
+.BR colors ,
+.BR speed " and " direction
+parameters.
+.B \-k
+paints keys on top of the effect.
+.B \-r
+adds a key\-press reaction layer (light the key, or a ripple) whose color may be
+.BR rainbow .
+The choice is saved and restored by the service unless
+.B \-\-no\-save
+is given.
+.TP
+.BI hold " COLOR"
+.RB [ \-k
+.IR KEY = COLOR ]...
+.RB [ \-\-preset
+.IR NAME ]
+.RB [ \-b
+.IR LEVEL ]
+.RB [ \-\-stop\-service ]
+.br
+Set a fixed color once and stop sending (HID LampArray keyboards): the color
+stays on the keyboard with nothing running.
+The firmware loses it on unplug, reboot or suspend; the service, when running,
+puts it back by itself.
+.TP
+.B hold \-\-release
+Hand the LEDs back to the keyboard firmware.
+.TP
+.BR brightness " [" \fILEVEL\fR ]
+Show or set the brightness:
+.BR 0 \- 255 ,
+.IR N %,
+.B +
+or
+.BR \- .
+Hardware brightness on the vendor channel, software brightness on HID LampArray.
+.TP
+.BR preset " " list
+.TQ
+.BR preset " " apply | save | delete " " \fINAME\fR
+.TQ
+.BR preset " " export " " \fINAME\fR " " \fIFILE\fR.json
+.TQ
+.BR preset " " import " " \fIFILE\fR.json
+Manage presets.
+Nineteen presets are built in;
+.B save
+stores the current lighting under
+.IR NAME .
+.SS Onboard memory (vendor channel only)
+.TP
+.BR onboard " " read
+Read the key\-press layer of the three profiles.
+.TP
+.BR onboard " " write " " \fIPROFILE\fR " [" \fIEFFECT\fR "] [" \fIapply-options\fR "] [" \-\-frames " " \fIN\fR "] [" \-\-keypress " " \fIMODE\fR "] [" \-y ]
+Render the effect (default: the current one) into
+.I N
+frames (1\-255) and write it to profile 1, 2 or 3, where it runs without any
+software.
+.I MODE
+is the key\-press layer:
+.BR match ,
+.BR black ,
+.B keep
+or a color.
+Writing is locked until
+.B test\-rgb
+succeeds on that keyboard (see
+.BR SAFETY ).
+.TP
+.BR profile " [" 1 | 2 | 3 ]
+Show or select the active onboard profile.
+.TP
+.B release
+Stop live mode; the keyboard shows its own (onboard) lighting.
+.TP
+.B resume
+Return to live mode.
+.TP
+.BR test\-rgb " [" \-\-yes | \-\-no ]
+Show a test pattern (green F\-row, red left half, blue right half) and ask
+whether it appeared.
+A yes unlocks onboard writes for that keyboard and firmware version.
+.SS Settings and system
+.TP
+.BR settings " [" \-\-set " " \fIKEY\fR = \fIVALUE\fR "]..."
+Show or change settings.
+Values are read as JSON when possible, otherwise as text.
+See
+.BR SETTINGS .
+.TP
+.BR language " [" \fICODE\fR ]
+Show or save the interface language
+.RB ( en ", " pt_BR ).
+The service and an open window switch too.
+.TP
+.B gui
+Open the graphical interface (GTK 4).
+.TP
+.B daemon
+Run the service in the foreground (same as
+.BR openalloyd ).
+.TP
+.B doctor
+Diagnose the installation: interfaces found, their roles and permissions, udev
+rule, service.
+Nothing is sent to the keyboard.
+.TP
+.B udev\-rules
+Print the udev rule that grants the logged\-in user access to the lighting
+interfaces (2 and 3) only.
+.TP
+.BR service " " start | stop | restart | status | enable | disable
+Control the systemd user service.
+.SH KEYS AND COLORS
+A
+.I KEY
+is a name
+.RB ( w ", " space ", " leftshift ", " enter ),
+a LED index
+.RB ( 19 )
+or a group:
+.BR wasd ,
+.BR arrows ,
+.BR letters ,
+.BR numbers ,
+.BR frow ,
+.BR modifiers ,
+.BR nav .
+A
+.I COLOR
+is
+.BI # rrggbb
+or a name such as
+.BR red ,
+.BR white ,
+.BR blue .
+.SH EFFECTS
+.BR static ,
+.BR breathing ,
+.BR spectrum ,
+.BR wave ,
+.BR colorwave ,
+.BR gradient ,
+.BR scanner ,
+.BR fire ,
+.BR snake ,
+.BR starlight ,
+.BR rain ,
+.BR flicker ,
+.BR blink ,
+.BR off ;
+key\-reactive (live only):
+.BR reactive ,
+.BR ripple ;
+sound\-reactive (live only, system audio through
+.BR parec (1)
+or
+.BR pw\-record (1)):
+.BR equalizer ,
+.BR soundspectrum ,
+.BR soundpulse ,
+.BR soundwave .
+Run
+.B openalloy effects
+for their parameters.
+.SH SETTINGS
+.TP
+.BR layout_override " (" null ", " ansi ", " abnt2 ", " iso )
+Force the drawn layout; null detects it from the keyboard.
+.TP
+.BR led_gamma " (1.0\-3.0, default 2.2)"
+Convert screen colors to LED colors; 1.0 sends them unchanged.
+.TP
+.BR fps " (5\-60, default 30)"
+Frame rate of live effects.
+.TP
+.BR profile_key_action " (" release ", " bind ", " ignore )
+What Fn+1/2/3 does: show the onboard profile, or apply the preset bound in
+.BR profile_bindings .
+.TP
+.BR reactive_input " (true, false)"
+Read key presses for the reactive effects.
+.TP
+.B audio_source
+PulseAudio/PipeWire source for sound effects; empty means the monitor of the
+default output.
+.TP
+.BR onboard_frames ", " onboard_keypress ", " onboard_keypress_color
+Defaults for
+.BR "onboard write" .
+.TP
+.B language
+Interface language.
+.SH SAFETY
+Onboard writes go to the keyboard's flash memory, which has no public
+documentation.
+They start locked on every real keyboard and are unlocked per keyboard (USB ID
+and serial number) and firmware version by a successful
+.BR test\-rgb .
+The 780\-byte profile storage is read and written back unchanged (the write is
+refused if it cannot be read), and command 0x30 without parameters, which
+resets the firmware, is never sent.
+Arbitrary HID commands cannot be sent.
+.SH ENVIRONMENT
+.TP
+.B OPENALLOY_LANG
+Interface language when no
+.B \-\-lang
+is given.
+.TP
+.B OPENALLOY_SOCKET
+Path of the service socket.
+.TP
+.B OPENALLOY_ENABLE_FLASH
+Set to
+.B I_ACCEPT_THE_RISK
+in the service environment to unlock onboard writes without
+.BR test\-rgb .
+.TP
+.BR XDG_CONFIG_HOME ", " XDG_RUNTIME_DIR
+Locations of the settings and of the socket.
+.SH FILES
+.TP
+.I ~/.config/openalloy/config.json
+Settings.
+.TP
+.I ~/.config/openalloy/presets/
+User presets (JSON).
+.TP
+.I $XDG_RUNTIME_DIR/openalloy.sock
+Service socket.
+.TP
+.I /etc/udev/rules.d/60\-openalloy.rules
+Access to the lighting interfaces (2 and 3) for the local user.
+.TP
+.I /etc/udev/rules.d/61\-openalloy\-reactive.rules
+Optional: read access to this keyboard's key events (reactive effects).
+.SH EXIT STATUS
+.B 0
+on success,
+.B 1
+on error,
+.B 2
+on a usage error,
+.B 130
+when interrupted.
+.SH EXAMPLES
+.nf
+openalloy apply wave \-s 40 \-d left
+openalloy apply static \-c \(dq#e31937\(dq \-k wasd=white \-k arrows=#00b7ff
+openalloy apply colorwave \-r ripple \-\-react\-color rainbow
+openalloy apply equalizer \-p sensitivity=150
+openalloy hold red \-k wasd=white
+openalloy brightness 50%
+openalloy preset apply matrix
+openalloy settings \-\-set layout_override=ansi
+openalloy \-\-simulate\-hp \-\-sim\-layout ansi gui
+.fi
+.SH BUGS
+Key macros and hardware key remapping are not supported (the protocol is
+unknown for this keyboard); use
+.BR keyd (1)
+or input\-remapper.
+Do not run OpenRGB or another lighting tool on the same keyboard at the same
+time.
+.SH AUTHOR
+Written by Everton Vilhena Cardoso.
+Third\-party credits are listed in the THANKS file.
+.SH COPYRIGHT
+Copyright \(co 2026 Everton Vilhena Cardoso.
+License GPLv2+: GNU GPL version 2 or later
+<https://gnu.org/licenses/old\-licenses/gpl\-2.0.html>.
+.br
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+.PP
+HyperX, Alloy Origins and NGENUITY are trademarks of their respective owners.
+OpenAlloy is not affiliated with HyperX, HP Inc. or Kingston Technology.
+.SH SEE ALSO
+.BR openalloyd (1),
+.BR udev (7),
+.BR systemctl (1),
+.BR journalctl (1)

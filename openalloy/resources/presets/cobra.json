@@ -1,0 +1,13 @@
+{
+  "name": "Snake",
+  "lighting": {
+    "effect": "snake",
+    "params": {
+      "color": "#fff000",
+      "background": "#060606",
+      "speed": 30,
+      "length": 16
+    },
+    "keys": {}
+  }
+}

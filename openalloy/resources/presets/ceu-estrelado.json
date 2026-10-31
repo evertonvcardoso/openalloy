@@ -1,0 +1,8 @@
+{
+  "name": "Starry sky",
+  "lighting": {
+    "effect": "starlight",
+    "params": {},
+    "keys": {}
+  }
+}

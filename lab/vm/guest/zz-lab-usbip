@@ -1,0 +1,25 @@
+#!/bin/sh
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2026 Everton Vilhena Cardoso
+# LAB ONLY (systemd-sleep hook). vhci-hcd refuses to suspend while a USB/IP link is
+# up ("We have 1 active connection. Do not suspend") - by design; upstream commit
+# "usb: vhci-hcd: Prevent suspending virtually attached devices" (2025) makes that
+# refusal reliable rather than lifting it. So the lab detaches the
+# emulated keyboards for the sleep - after the program's own hook (USB reset) has
+# finished - and attaches them again on resume: a keyboard re-enumerated across S3.
+case "$1" in
+  pre)
+    i=0
+    while pgrep -f "system-sleep/openalloy" >/dev/null 2>&1 && [ $i -lt 100 ]; do
+      sleep 0.1; i=$((i + 1))
+    done
+    touch /run/lab-attach-paused
+    for p in $(usbip port 2>/dev/null | sed -n 's/^Port \([0-9]*\):.*/\1/p'); do
+      usbip detach -p "$p" >/dev/null 2>&1
+    done
+    ;;
+  post)
+    rm -f /run/lab-attach-paused
+    ;;
+esac
+exit 0

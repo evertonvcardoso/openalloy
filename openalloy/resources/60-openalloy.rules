@@ -1,0 +1,31 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2026 Everton Vilhena Cardoso
+# OpenAlloy - HyperX Alloy Origins Core (tenkeyless)
+#
+# Grants the user on the active local seat (systemd-logind/elogind "uaccess")
+# read/write access to the keyboard's lighting interfaces only:
+#   interface 2 = vendor control channel (usage page 0xFF13)
+#   interface 3 = HID LampArray (usage page 0x59, Windows "Dynamic Lighting"),
+#                 used when the firmware refuses interface 2 (HP 03f0:098f fw 21.16)
+# Interfaces 0 and 1 carry your keystrokes and are deliberately NOT opened up.
+#
+# How it matches: the USB ids live on the USB *device* and the interface number on
+# the USB *interface* - two different parents of the hidraw node. udev requires all
+# ATTRS{} keys of one rule to match on the SAME parent, so a rule combining
+# ATTRS{idVendor} with ATTRS{bInterfaceNumber} never matches (OpenAlloy <= 1.5.3).
+# The usb_id builtin copies both onto the hidraw node itself (ID_VENDOR_ID,
+# ID_MODEL_ID, ID_USB_INTERFACE_NUM), which is what is matched below.
+#
+# Install:  sudo install -m644 60-openalloy.rules /etc/udev/rules.d/
+#           sudo udevadm control --reload-rules && sudo udevadm trigger --subsystem-match=hidraw
+
+SUBSYSTEM!="hidraw", GOTO="openalloy_end"
+ENV{ID_USB_INTERFACE_NUM}=="", IMPORT{builtin}="usb_id"
+
+# HyperX (Kingston) 0951:16e6
+ENV{ID_VENDOR_ID}=="0951", ENV{ID_MODEL_ID}=="16e6", ENV{ID_USB_INTERFACE_NUM}=="02|03", TAG+="uaccess", TAG+="openalloy"
+
+# HP-branded twin of the same hardware 03f0:098f
+ENV{ID_VENDOR_ID}=="03f0", ENV{ID_MODEL_ID}=="098f", ENV{ID_USB_INTERFACE_NUM}=="02|03", TAG+="uaccess", TAG+="openalloy"
+
+LABEL="openalloy_end"

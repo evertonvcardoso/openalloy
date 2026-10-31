@@ -1,0 +1,10 @@
+{
+  "name": "Disco (sound)",
+  "lighting": {
+    "effect": "soundspectrum",
+    "params": {
+      "sensitivity": 110
+    },
+    "keys": {}
+  }
+}
