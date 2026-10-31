@@ -183,9 +183,13 @@ if [[ $DO_DESKTOP -eq 1 ]]; then
   mkdir -p "$APPS" "$ICONS"
   sed "s|^Exec=.*|Exec=$BIN_DIR/openalloy gui|" "$RES/openalloy.desktop" > "$APPS/openalloy.desktop"
   install -m 0644 "$RES/openalloy.svg" "$ICONS/openalloy.svg"
-  command -v update-desktop-database >/dev/null && update-desktop-database "$APPS" >/dev/null 2>&1 || true
-  command -v gtk-update-icon-cache >/dev/null && \
+  # Refresh the menu and icon caches when the tools exist; a failure here is harmless.
+  if command -v update-desktop-database >/dev/null; then
+    update-desktop-database "$APPS" >/dev/null 2>&1 || true
+  fi
+  if command -v gtk-update-icon-cache >/dev/null; then
     gtk-update-icon-cache -q "$HOME/.local/share/icons/hicolor" >/dev/null 2>&1 || true
+  fi
   c_ok "$(t "'OpenAlloy' shortcut added to the application menu")"
 fi
 

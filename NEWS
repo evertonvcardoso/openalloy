@@ -7,6 +7,18 @@ Please report problems with the output of 'openalloy doctor' and
 'journalctl --user -u openalloy'.
 
 
+* Noteworthy changes in release 1.6.2 (2026-10-31) [stable]
+
+  The first run of the new automated tests on GitHub failed in the shell
+  script check: the runner's older shellcheck flags two lines of install.sh
+  (SC2015, 'A && B || C'). The lines were correct, but they are now plain
+  'if' statements, and the CI installs a pinned shellcheck (0.11.0) instead of
+  whatever version the runner's distribution ships. All the tests themselves
+  passed on Python 3.10 to 3.14. No change in the program.
+
+  Version 1.6.1 was tagged but not released.
+
+
 * Noteworthy changes in release 1.6.1 (2026-10-31) [stable]
 
 ** Repository and project files

@@ -54,16 +54,17 @@ jobs:
           python-version: "3.13"
       - name: Install tools
         run: |
-          python -m pip install --upgrade pip "ruff==0.16.9"
+          # Pinned versions: the result must not change with the runner's distribution.
+          python -m pip install --upgrade pip "ruff==0.16.9" "shellcheck-py==0.11.0.1"
           sudo apt-get update -qq
-          sudo apt-get install -y -qq shellcheck groff-base
+          sudo apt-get install -y -qq groff-base
       - name: Ruff
         run: ruff check openalloy tests tools lab
       - name: Translation catalogs are complete and in sync
         run: python tools/i18n.py check
       - name: Shell scripts
         run: >-
-          shellcheck install.sh uninstall.sh tools/test_install.sh
+          shellcheck --version && shellcheck install.sh uninstall.sh tools/test_install.sh
           lab/vm/build-image.sh lab/vm/guest/lab-attach.sh lab/vm/guest/zz-lab-usbip
       - name: Manual pages render without warnings
         run: |

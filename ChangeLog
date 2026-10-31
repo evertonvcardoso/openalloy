@@ -1,5 +1,17 @@
 2026-10-31  Everton Vilhena Cardoso
 
+	Release 1.6.2: fix the shell script check of the CI.
+
+	* install.sh: Refresh the desktop and icon caches with 'if'
+	statements instead of 'A && B || C' (shellcheck SC2015).
+	* .github/workflows/ci.yml: Install a pinned shellcheck
+	(shellcheck-py 0.11.0.1) and print its version.
+	* openalloy/__init__.py, pyproject.toml, man/openalloy.1,
+	man/openalloyd.1: Version 1.6.2.
+	* tests/test_release_1_6_2.py: New.
+
+2026-10-31  Everton Vilhena Cardoso
+
 	Release 1.6.1: CI, security policy, issue forms, project URLs.
 
 	* .github/workflows/ci.yml: New; tests on Python 3.10 to 3.14, lab
