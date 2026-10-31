@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "openalloy"
-version = "1.6.0"
+version = "1.6.1"
 description = "Native Linux configurator for the HyperX Alloy Origins Core keyboard: per-key RGB, effects, onboard profiles (an NGENUITY alternative)"
 readme = "README.md"
 license = "GPL-2.0-or-later"
@@ -29,6 +29,14 @@ classifiers = [
 ]
 # The core (daemon + CLI) uses only the Python standard library.
 dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/evertonvcardoso/openalloy"
+Source = "https://github.com/evertonvcardoso/openalloy"
+Issues = "https://github.com/evertonvcardoso/openalloy/issues"
+Releases = "https://github.com/evertonvcardoso/openalloy/releases"
+Changelog = "https://github.com/evertonvcardoso/openalloy/blob/main/NEWS"
+Documentation = "https://github.com/evertonvcardoso/openalloy#readme"
 
 [project.optional-dependencies]
 gui = ["PyGObject>=3.42", "pycairo>=1.20"]   # pycairo draws the keyboard (python3-gi-cairo)

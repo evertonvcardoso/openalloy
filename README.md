@@ -1,5 +1,9 @@
 # OpenAlloy
 
+[![Tests](https://github.com/evertonvcardoso/openalloy/actions/workflows/ci.yml/badge.svg)](https://github.com/evertonvcardoso/openalloy/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/evertonvcardoso/openalloy)](https://github.com/evertonvcardoso/openalloy/releases/latest)
+[![License: GPL v2+](https://img.shields.io/badge/license-GPL--2.0--or--later-blue)](COPYING)
+
 **Native Linux configurator for the HyperX Alloy Origins Core keyboard** — a working
 alternative to HyperX NGENUITY, which exists only for Windows.
 
@@ -70,8 +74,10 @@ the keyboard itself (Fn + F12).
 
 ## Installation
 
+Download `openalloy-<version>.zip` from the [latest release](https://github.com/evertonvcardoso/openalloy/releases/latest), then:
+
 ```bash
-unzip openalloy-1.6.0.zip && cd openalloy
+unzip openalloy-*.zip && cd openalloy
 ./install.sh                  # add --lang pt_BR for Portuguese, --reactive for key-reactive effects
 ```
 
@@ -219,6 +225,12 @@ python3 -m openalloy.presentation.cli.main --simulate gui
 - [docs/PROTOCOL.md](docs/PROTOCOL.md) — vendor channel and HID LampArray.
 - [lab/README.md](lab/README.md) — how to build and run the test lab.
 - [NEWS](NEWS) — release history; [ChangeLog](ChangeLog) — detailed changes.
+
+## Reporting problems
+
+Open an [issue](https://github.com/evertonvcardoso/openalloy/issues/new/choose) with the output of `openalloy doctor`,
+`openalloy status` and `journalctl --user -u openalloy -b`. Security problems are reported
+privately; see [SECURITY.md](SECURITY.md).
 
 ## License and credits
 

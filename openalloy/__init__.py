@@ -7,6 +7,6 @@ configuration model of PlasmaNGenuity, and the keyboard protocol documented by
 OpenRGB and hxoctkl (see THANKS).
 """
 
-__version__ = "1.6.0"
+__version__ = "1.6.1"
 APP_ID = "io.github.openalloy"
 APP_NAME = "OpenAlloy"

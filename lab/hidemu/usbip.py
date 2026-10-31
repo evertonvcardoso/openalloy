@@ -223,7 +223,8 @@ class Link:
 
 
 class UsbipServer:
-    def __init__(self, devices: List[Device], host: str = "0.0.0.0", port: int = 3240):
+    def __init__(self, devices: List[Device], host: str = "127.0.0.1", port: int = 3240):
+        # Loopback by default: a QEMU guest with user networking reaches it as 10.0.2.2.
         self.devices = {d.busid: d for d in devices}
         self.host, self.port = host, port
         self.links: Dict[str, Link] = {}

@@ -1,0 +1,77 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2026 Everton Vilhena Cardoso
+#
+# Tests and checks on every push and pull request. Everything runs on simulated and
+# emulated keyboards: no hardware, no GTK and no root access are needed.
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: Python ${{ matrix.python }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install test tools
+        run: python -m pip install --upgrade pip pytest
+      - name: Unit and integration tests
+        run: python -m pytest -q -p no:cacheprovider
+      - name: Drivers against the emulated USB keyboards
+        run: python -m pytest -q -p no:cacheprovider lab/tests
+
+  checks:
+    name: Lint, translations, scripts and manual pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install tools
+        run: |
+          python -m pip install --upgrade pip "ruff==0.16.9"
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq shellcheck groff-base
+      - name: Ruff
+        run: ruff check openalloy tests tools lab
+      - name: Translation catalogs are complete and in sync
+        run: python tools/i18n.py check
+      - name: Shell scripts
+        run: >-
+          shellcheck install.sh uninstall.sh tools/test_install.sh
+          lab/vm/build-image.sh lab/vm/guest/lab-attach.sh lab/vm/guest/zz-lab-usbip
+      - name: Manual pages render without warnings
+        run: |
+          for page in man/*.1; do
+            out="$(groff -man -Tutf8 -ww -z "$page" 2>&1)"
+            if [ -n "$out" ]; then echo "$page: $out"; exit 1; fi
+          done
+      - name: Package builds
+        run: |
+          python -m pip install build
+          python -m build --sdist --wheel --outdir dist .

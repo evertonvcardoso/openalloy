@@ -1,5 +1,5 @@
 # Source distribution = everything needed to install (install.sh), test and translate.
-include README.md INSTALL NEWS ChangeLog AUTHORS THANKS COPYING
+include README.md INSTALL NEWS ChangeLog AUTHORS THANKS COPYING SECURITY.md
 include install.sh uninstall.sh
 recursive-include man *.1
 recursive-include tools *.py *.sh

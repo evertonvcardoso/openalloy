@@ -39,7 +39,7 @@ protocol encoding, both drivers, LampArray enumeration and limits, every effect,
 engine and its modes, RPC limits and lifecycle, settings and presets, the flash gate, the
 udev rules, layouts, LED color correction, suspend and resume handling, i18n catalogs,
 and the GUI's thread hand-off. A watchdog interrupts a test that hangs for 120 s and
-writes every thread's stack to `/tmp/openalloy-test-hang.log`; a test that leaves
+writes every thread's stack to `/tmp/openalloy-test-hang-<uid>.log`; a test that leaves
 OpenAlloy threads running fails.
 
 `python3 -m pytest lab/tests` (20 tests, seconds) runs the real drivers against the

@@ -162,6 +162,11 @@ python3 -m build                        # sdist and wheel
 tools/test_install.sh OLD.zip NEW.zip   # install, upgrade, roll back
 ```
 
+GitHub Actions runs the same checks on every push and pull request
+(`.github/workflows/ci.yml`): the test suite on Python 3.10 to 3.14, `lab/tests`, ruff,
+shellcheck, the translation catalogs, the manual pages and the package build. CodeQL
+code scanning runs through GitHub's default setup.
+
 Versions follow Semantic Versioning. Every release updates `openalloy/__init__.py`,
 `pyproject.toml`, the manual pages' header, [NEWS](../NEWS) and [ChangeLog](../ChangeLog).
 Every source file starts with an SPDX license identifier and a copyright line.

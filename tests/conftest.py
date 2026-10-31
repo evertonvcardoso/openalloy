@@ -11,9 +11,23 @@ import pytest
 # A hung test must not stall the run silently: after this many seconds every thread's
 # stack is printed and the run stops (override with OPENALLOY_TEST_TIMEOUT).
 TEST_TIMEOUT = float(os.environ.get("OPENALLOY_TEST_TIMEOUT", "120"))
-# pytest captures fd 2, so the stacks go to a file that survives the abrupt exit.
-HANG_LOG = os.path.join(tempfile.gettempdir(), "openalloy-test-hang.log")
-_hang_file = open(HANG_LOG, "w")  # noqa: SIM115 - kept open for faulthandler
+# pytest captures fd 2, so the stacks go to a file that survives the abrupt exit. One file
+# per user (a shared /tmp name created by another user made the whole run fail), never
+# through a symlink; if it cannot be opened, a private temporary file is used instead.
+HANG_LOG = os.environ.get("OPENALLOY_TEST_HANG_LOG") or os.path.join(
+    tempfile.gettempdir(), f"openalloy-test-hang-{os.getuid()}.log")
+
+
+def _open_hang_log():
+    global HANG_LOG
+    try:
+        fd = os.open(HANG_LOG, os.O_WRONLY | os.O_CREAT | os.O_TRUNC | os.O_NOFOLLOW, 0o600)
+    except OSError:
+        fd, HANG_LOG = tempfile.mkstemp(prefix="openalloy-test-hang-", suffix=".log")
+    return os.fdopen(fd, "w")
+
+
+_hang_file = _open_hang_log()  # kept open for faulthandler
 
 
 def _openalloy_threads():

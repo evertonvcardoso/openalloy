@@ -1,5 +1,33 @@
 2026-10-31  Everton Vilhena Cardoso
 
+	Release 1.6.1: CI, security policy, issue forms, project URLs.
+
+	* .github/workflows/ci.yml: New; tests on Python 3.10 to 3.14, lab
+	conformance tests, ruff, shellcheck, translations, manual pages and
+	package build, with read-only permissions.
+	* .github/ISSUE_TEMPLATE/bug_report.yml, feature_request.yml,
+	config.yml: New issue forms; security reports go to private
+	vulnerability reporting.
+	* SECURITY.md: New.
+	* README.md: Badges, download from the latest release, reporting
+	problems.
+	* pyproject.toml (project.urls): New.  Version 1.6.1.
+	* openalloy/__init__.py, man/openalloy.1, man/openalloyd.1: Version
+	1.6.1.
+	* MANIFEST.in: Ship SECURITY.md.
+	* .gitignore: Local environments, built packages, lab results and
+	hardware diagnostics output.
+	* lab/hidemu/usbip.py (UsbipServer): Listen on 127.0.0.1 by default.
+	* lab/hidemu/__main__.py (main): New --host option.
+	* lab/README.md: Document --host.
+	* docs/DEVELOPMENT.md: Continuous integration.
+	* tests/conftest.py (_open_hang_log): New; per-user hang log, no
+	symbolic links, private fallback.
+	* docs/TESTING.md: Follow the new hang log name.
+	* tests/test_release_1_6_1.py: New.
+
+2026-10-31  Everton Vilhena Cardoso
+
 	Release 1.6.0: English documentation, GNU project files, manual pages.
 
 	* AUTHORS, THANKS, NEWS, ChangeLog, INSTALL: New files.

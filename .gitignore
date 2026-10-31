@@ -6,3 +6,30 @@ build/
 dist/
 *.egg-info/
 .mypy_cache/
+
+# Local environments and editors
+.venv/
+venv/
+.idea/
+.vscode/
+*.swp
+*~
+
+# Test and coverage output
+.coverage
+htmlcov/
+*.log
+
+# Built packages and release files (published on GitHub Releases, not in the repository)
+*.zip
+*.whl
+*.tar.gz
+SHA256SUMS*
+
+# Lab work and results (VM images, local evidence)
+lab-work/
+results/
+
+# Hardware diagnostics output (may contain the keyboard's serial number)
+diag*.txt
+descriptors*.json

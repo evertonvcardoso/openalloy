@@ -45,8 +45,9 @@ python3 lab/run_lab.py --work ./lab-work --zip openalloy-1.5.3.zip --out results
 python3 lab/run_lab.py --work ./lab-work --zip openalloy-1.5.2.zip --out results/1.5.2
 python3 lab/compare.py results/1.5.2 results/1.5.3 > comparison.md
 
-# emulator alone (e.g. against another Linux VM or machine with vhci-hcd):
-cd lab && python3 -m hidemu serve --hp 1-2 --kingston 1-1
+# emulator alone (e.g. against another Linux VM or machine with vhci-hcd). It listens on
+# the loopback by default; --host 0.0.0.0 exposes it to the network (trusted networks only):
+cd lab && python3 -m hidemu serve --hp 1-2 --kingston 1-1 --host 0.0.0.0
 #   guest: sudo modprobe vhci-hcd; sudo usbip attach -r HOST -b 1-2
 python3 -m hidemu state 1-2 | log 1-2 | render 1-2 > kb.svg | fault 1-2 stall_feature true
 ```

@@ -33,6 +33,10 @@ def main(argv=None) -> int:
     s.add_argument("--kingston", metavar="BUSID")
     s.add_argument("--hp", metavar="BUSID")
     s.add_argument("--variant", default="abnt2", choices=["abnt2", "ansi", "iso"])
+    s.add_argument("--host", default="127.0.0.1",
+                   help="address to listen on (default: loopback only, enough for a QEMU "
+                        "guest with user networking; 0.0.0.0 exposes the emulated keyboards "
+                        "to the whole network)")
     s.add_argument("--port", type=int, default=3240)
     s.add_argument("--min-update-us", type=int, default=30000)
     for name in ("state", "plug", "unplug", "render"):
@@ -60,7 +64,7 @@ def main(argv=None) -> int:
                                            min_update_us=a.min_update_us))
         if not devs:
             ap.error("give --kingston and/or --hp")
-        srv = UsbipServer(devs, port=a.port)
+        srv = UsbipServer(devs, host=a.host, port=a.port)
         srv.start()
         ctl = ControlServer(srv, Path(a.control))
         ctl.start()

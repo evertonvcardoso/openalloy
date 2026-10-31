@@ -7,6 +7,39 @@ Please report problems with the output of 'openalloy doctor' and
 'journalctl --user -u openalloy'.
 
 
+* Noteworthy changes in release 1.6.1 (2026-10-31) [stable]
+
+** Repository and project files
+
+  Automated tests on GitHub Actions for every push and pull request: the test
+  suite on Python 3.10 to 3.14, the drivers against the emulated keyboards,
+  ruff, shellcheck, the translation catalogs, the manual pages and the package
+  build. The README shows the result, the latest release and the license.
+
+  SECURITY.md: how to report a vulnerability privately, and what is in scope.
+  Issue forms for bug reports (asking for 'openalloy doctor', 'openalloy
+  status' and the service log) and feature requests; security reports are
+  routed to private reporting.
+
+  The project URLs (repository, issues, releases, changelog) are in the package
+  metadata, and the README links to the latest release for downloading.
+
+** Tests
+
+  The test watchdog wrote to a fixed file, /tmp/openalloy-test-hang.log; when
+  another user had created it, the whole test run failed to start. The file is
+  now per user (/tmp/openalloy-test-hang-<uid>.log), never opened through a
+  symbolic link, and a private temporary file is used if it cannot be opened.
+
+** Test lab
+
+  The USB/IP emulator of the test lab listened on every network interface
+  (0.0.0.0), exposing the emulated keyboards to the local network while the lab
+  ran. It now listens on the loopback only, which is all a QEMU guest needs;
+  '--host' chooses another address. The lab is a development tool and is not
+  installed; the program itself is unchanged.
+
+
 * Noteworthy changes in release 1.6.0 (2026-10-31) [stable]
 
 ** Documentation and packaging
